@@ -4,23 +4,19 @@
     </x-slot>
 
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Social Login -->
-        <x-auth-social-login />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+
+            <div class="md-4">
+                <h4>Sign In</h4>
+            </div>
 
             <!-- Email Address -->
             <div>
@@ -31,7 +27,14 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <div class="flex">
+                    <x-label for="password" :value="__('Password')" />
+                        @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900 text-right" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                        @endif
+                </div>
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
@@ -44,25 +47,26 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-                @endif
-
-                <x-button class="ml-3">
+            <div class="flex items-center justify-center">
+                <x-button class="d-grid gap-2">
                     {{ __('Log in') }}
                 </x-button>
             </div>
-        </form>
 
-        <x-slot name="extra">
-            @if (Route::has('register'))
-            <p class="text-center text-gray-600 mt-4">
+            @if (Route::has('password.request'))
+            <p class="text-left text-gray-600 mt-4">
                 Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>.
             </p>
             @endif
-        </x-slot>
+
+            {{-- <x-slot name="extra">
+                @if (Route::has('register'))
+                <p class="text-center text-gray-600 mt-4">
+                    Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>.
+                </p>
+                @endif
+            </x-slot> --}}
+        </form>
+
     </x-auth-card>
 </x-auth-layout>
