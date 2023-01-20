@@ -14,40 +14,47 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div class="md-4">
-                <h4>Sign In</h4>
+            <div>
+                <h3><b>Masuk</b></h3>
             </div>
+
+            <br>
 
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder="Mauskan email anda disini" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <div class="flex">
-                    <x-label for="password" :value="__('Password')" />
+                    <div>
+                        <x-label for="password" :value="__('Password')" />
+                    </div>
+
+                    <div class="ml-auto">
                         @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900 text-right" href="{{ route('password.request') }}">
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
                         @endif
+                    </div>
                 </div>
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" placeholder="Mauskan password anda disini"/>
             </div>
 
             <!-- Remember Me -->
-            <div class="block mt-4">
+            {{-- <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
-            </div>
+            </div> --}}
 
-            <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center mt-5">
                 <x-button class="d-grid gap-2">
                     {{ __('Log in') }}
                 </x-button>
@@ -58,14 +65,6 @@
                 Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>.
             </p>
             @endif
-
-            {{-- <x-slot name="extra">
-                @if (Route::has('register'))
-                <p class="text-center text-gray-600 mt-4">
-                    Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>.
-                </p>
-                @endif
-            </x-slot> --}}
         </form>
 
     </x-auth-card>
