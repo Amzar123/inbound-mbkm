@@ -67,6 +67,20 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
 
+            // Profile
+            $menu->add('<i class="nav-icon fas fa-user"></i> Profile', [
+                'route' => 'backend.settings',
+                'class' => 'nav-item',
+            ])
+            ->data([
+                'order'         => 102,
+                'activematches' => 'admin/settings*',
+                'permission'    => ['edit_settings'],
+            ])
+            ->link->attr([
+                'class' => 'nav-link',
+            ]);
+
             // Backup
             $menu->add('<i class="nav-icon fas fa-archive"></i> Backups', [
                 'route' => 'backend.backups.index',
