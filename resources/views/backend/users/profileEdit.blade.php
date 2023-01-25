@@ -95,7 +95,7 @@ justify-content: center;
                 <!--form-group-->
 
                 <div class="row m-3">
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
                             $field_name = '<b>NIK</b>';
@@ -111,7 +111,7 @@ justify-content: center;
                         </div>
                     </div>
                     
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
                             $field_name = '<b>Nama</b>';
@@ -123,11 +123,11 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NIK anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->placeholder("Masukan Nama anda disini")->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
                             $field_name = '<b>Email Address</b>';
@@ -139,11 +139,11 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NIK anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->placeholder("Masukan Email anda disini")->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
                             $field_name = '<b>NISN</b>';
@@ -155,11 +155,11 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NIK anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->placeholder("Masukan NISN anda disini")->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
                             $field_name = '<b>Address</b>';
@@ -171,11 +171,11 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->textarea($field_name)->placeholder("Masukan NIK anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->textarea($field_name)->placeholder("Masukan alamat anda disini")->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
 
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
                             $field_name = '<b>NIM PT Asal</b>';
@@ -187,11 +187,11 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NIK anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->placeholder("Masukan NIM PT Asal anda disini")->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
                             $field_name = '<b>PT Asal</b>';
@@ -203,7 +203,7 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NIK anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->placeholder("Masukan PT Asal anda disini")->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                 </div>
@@ -216,68 +216,6 @@ justify-content: center;
                         
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <?php
-                            $field_name = 'url_website';
-                            $field_lable = label_case($field_name);
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = 'url_facebook';
-                            $field_lable = label_case($field_name);
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = 'url_instagram';
-                            $field_lable = label_case($field_name);
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = 'url_twitter';
-                            $field_lable = label_case($field_name);
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = 'url_linkedin';
-                            $field_lable = label_case($field_name);
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-                </div> --}}
 
                 <div class="row mt-4 m-3" style="float: right" >
                     <div class="col" style="margin-right: 25px">

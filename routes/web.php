@@ -141,3 +141,17 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     Route::patch("$module_name/{id}/block", ['as' => "$module_name.block", 'uses' => "$controller_name@block", 'middleware' => ['permission:block_users']]);
     Route::patch("$module_name/{id}/unblock", ['as' => "$module_name.unblock", 'uses' => "$controller_name@unblock", 'middleware' => ['permission:block_users']]);
 });
+
+
+/*
+*
+* Backend Routes
+* These routes need view-backend permission
+* --------------------------------------------------------------------
+*/
+Route::group(['namespace' => 'App\Http\Controllers\Backend', 'as' => 'users.'], function () {
+    $backend_controller = 'BackendController';
+    $controller_name = 'UserController';
+    Route::get("dashboard", ['as' => "$backend_controller.index", 'uses' => "$backend_controller@index"]);
+    Route::get("hehe", ['as' => "$controller_name.profile", 'uses' => "$controller_name@profile"]);
+});

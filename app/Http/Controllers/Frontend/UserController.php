@@ -417,4 +417,13 @@ class UserController extends Controller
             }
         }
     }
+
+    /**
+     * Show dashboard for user
+     *
+     * @return [type] [description]
+     */
+    public function showDashboard(){
+        return redirect('dashboard');
+    }
 }

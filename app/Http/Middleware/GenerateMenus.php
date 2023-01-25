@@ -69,13 +69,13 @@ class GenerateMenus
 
             // Profile
             $menu->add('<i class="nav-icon fas fa-user"></i> Profile', [
-                'route' => 'backend.settings',
+                'route' => 'users.hehe',
                 'class' => 'nav-item',
             ])
             ->data([
                 'order'         => 102,
-                'activematches' => 'admin/settings*',
-                'permission'    => ['edit_settings'],
+                'activematches' => 'profile*',
+                'permission'    => [],
             ])
             ->link->attr([
                 'class' => 'nav-link',
