@@ -83,7 +83,7 @@ class GenerateMenus
 
             // Profile
             $menu->add('<i class="nav-icon fas fa-file"></i> Berkas', [
-                // 'route' => 'backend.document.index',
+                'route' => 'document.index',
                 'class' => 'nav-item',
             ])
             ->data([

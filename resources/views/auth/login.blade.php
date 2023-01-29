@@ -62,7 +62,7 @@
 
             @if (Route::has('password.request'))
             <p class="text-left text-gray-600 mt-4">
-                Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>.
+                {{-- Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>. --}}
             </p>
             @endif
         </form>
