@@ -1,5 +1,7 @@
 {
     "Article": true,
     "Tag": true,
-    "Comment": true
+    "Comment": true,
+    "Test2": true,
+    "Inbound": true
 }

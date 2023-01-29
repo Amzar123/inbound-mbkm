@@ -1,10 +1,10 @@
 {
-    "name": "nasirkhan/inbound",
+    "name": "nwidart/inbound",
     "description": "",
     "authors": [
         {
-            "name": "Nasir Khan",
-            "email": "nasir8891@gmail.com"
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
         }
     ],
     "extra": {
