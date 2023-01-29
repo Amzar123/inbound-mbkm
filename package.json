@@ -20,7 +20,7 @@
         "autoprefixer": "^10.4.13",
         "axios": "^1.2.0",
         "bootstrap": "^5.2.3",
-        "jquery": "^3.6.1",
+        "jquery": "^3.6.3",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.21",
         "perfect-scrollbar": "^1.5.5",

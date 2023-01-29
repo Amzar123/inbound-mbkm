@@ -31,18 +31,18 @@ class GenerateMenus
             ]);
 
             // Notifications
-            $menu->add('<i class="nav-icon fas fa-bell"></i> Notifications', [
-                'route' => 'backend.notifications.index',
-                'class' => 'nav-item',
-            ])
-            ->data([
-                'order'         => 99,
-                'activematches' => 'admin/notifications*',
-                'permission'    => [],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
+            // $menu->add('<i class="nav-icon fas fa-bell"></i> Notifications', [
+            //     'route' => 'backend.notifications.index',
+            //     'class' => 'nav-item',
+            // ])
+            // ->data([
+            //     'order'         => 99,
+            //     'activematches' => 'admin/notifications*',
+            //     'permission'    => [],
+            // ])
+            // ->link->attr([
+            //     'class' => 'nav-link',
+            // ]);
 
             // Separator: Access Management
             $menu->add('Management', [
@@ -69,12 +69,26 @@ class GenerateMenus
 
             // Profile
             $menu->add('<i class="nav-icon fas fa-user"></i> Profile', [
-                'route' => 'users.hehe',
+                'route' => 'backend.settings',
                 'class' => 'nav-item',
             ])
             ->data([
                 'order'         => 102,
                 'activematches' => 'profile*',
+                'permission'    => [],
+            ])
+            ->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+            // Profile
+            $menu->add('<i class="nav-icon fas fa-file"></i> Berkas', [
+                'route' => 'backend.document.index',
+                'class' => 'nav-item',
+            ])
+            ->data([
+                'order'         => 103,
+                'activematches' => 'document*',
                 'permission'    => [],
             ])
             ->link->attr([
