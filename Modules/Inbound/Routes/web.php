@@ -14,6 +14,7 @@
 Route::prefix('inbound')->group(function() {
     Route::get('/', 'InboundController@index');
     Route::get("document", ['as' => "document.index", 'uses' => "InboundController@index"]);
+    Route::get("profile", ['as' => "inbound.profile.index", 'uses' => "UserController@index"]);
 });
 
 /*

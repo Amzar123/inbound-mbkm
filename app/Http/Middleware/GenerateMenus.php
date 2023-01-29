@@ -69,7 +69,7 @@ class GenerateMenus
 
             // Profile
             $menu->add('<i class="nav-icon fas fa-user"></i> Profile', [
-                'route' => 'backend.settings',
+                'route' => 'inbound.profile.index',
                 'class' => 'nav-item',
             ])
             ->data([
