@@ -6,6 +6,13 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+
+use App\Models\Userprofile;
+use App\Models\User;
+
+use App\Events\Backend\UserProfileUpdated;
+use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
@@ -46,16 +53,17 @@ class UserController extends Controller
             $id = auth()->user()->id;
         }
 
-        // $$module_name_singular = $module_model::findOrFail($id);
-        // $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+        $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
-        // Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+        // dd($userprofile);
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             "inbound::backend.user.Profile",
-            // compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile')
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile')
         );
-        // return view('inbound::backend.user.Profile');
     }
 
     /**
@@ -82,10 +90,32 @@ class UserController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
-    {
-        return view('inbound::show');
-    }
+    // public function show($id)
+    // {
+    //     dd("ini id nya ", $id);
+    //     $module_title = $this->module_title;
+    //     $module_name = $this->module_name;
+    //     $module_path = $this->module_path;
+    //     $module_icon = $this->module_icon;
+    //     $module_model = $this->module_model;
+    //     $module_name_singular = Str::singular($module_name);
+
+    //     $module_action = 'Edit Profile';
+
+    //     if (! auth()->user()->can('edit_users')) {
+    //         $id = auth()->user()->id;
+    //     }
+
+    //     $$module_name_singular = User::findOrFail($id);
+    //     $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+
+    //     Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+    //     return view(
+    //         "inbound::backend.user.Profile",
+    //         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', "$module_name_singular", 'userprofile')
+    //     );
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -105,7 +135,72 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Edit Profile';
+
+        // $this->validate($request, [
+        //     'avatar'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     'first_name'=> 'required|min:3|max:191',
+        //     'last_name' => 'required|min:3|max:191',
+        //     'email'     => 'email',
+        // ]);
+
+        // $this->validate($request, [
+        //     // 'avatar'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     'nama'=> 'required|min:3|max:191',
+        //     'last_name' => 'required|min:3|max:191',
+        //     'email_address'     => 'email',
+        //     'nim' => 'required',
+        //     'nik' => 'required|min:12',
+        //     'pt_asal' => 'required',
+        //     'address' => 'optional',
+        //     'nisn' => 'required'
+        // ]);
+
+        if (! auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
+
+        $$module_name_singular = User::findOrFail($id);
+
+        // Handle Avatar upload
+        if ($request->hasFile('avatar')) {
+            if ($$module_name_singular->getMedia($module_name)->first()) {
+                $$module_name_singular->getMedia($module_name)->first()->delete();
+            }
+
+            $media = $$module_name_singular->addMedia($request->file('avatar'))->toMediaCollection($module_name);
+
+            $$module_name_singular->avatar = $media->getUrl();
+
+            $$module_name_singular->save();
+        }
+
+        $data_array = $request->except('avatar');
+        $data_array['avatar'] = $$module_name_singular->avatar;
+        // $data_array['name'] = $request->first_name.' '.$request->last_name;
+        
+        $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
+        $user_profile->update($data_array);
+
+        // dd($user_profile);
+
+        event(new UserProfileUpdated($user_profile));
+
+        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Updated Successfully!')->important();
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        // dd("sukses yeay");
+        return redirect(route('inbound.profile.index', $$module_name_singular->id));
+        
     }
 
     /**

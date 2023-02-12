@@ -24,35 +24,67 @@
   border-style: solid;
   border-color: #FFFFFF;
   box-shadow: 0 0 8px 3px #B8B8B8;
-   position: relative;
+  position: relative;
 }
 
 .wrap {
   position: relative;
 }
 
-.wrap:after {
-font-family: 'Font Awesome 5 Free';
-font-weight: 900;
-content: "\f044";
-position: absolute;
-width: 30px;
-height: 30px;
-border-radius: 50%;
-border: 1px solid grey;
-top: 0;
-left: 113px;
-background: white;
-color: blue;
-align-items: center;
-display: flex;
-justify-content: center;
+/* .wrap:after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f044";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid grey;
+    top: 0;
+    left: 113px;
+    background: white;
+    color: blue;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+} */
+
+.inputfile {
+    opacity: 1;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #624F82;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    left: 105px;
+}
+.inputfile + label {
+    opacity: 1;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #624F82;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    left: 105px;
+}
+.inputfile + label svg {
+    fill: red;
 }
 </style>
 <div class="card">
     <div class="card-body">
         <x-backend.section-header>
-            {{-- <i class="{{ $module_icon }}"></i> {{ __('Profile') }} <small class="text-muted">{{ __($module_action) }}</small> --}}
+            <i class="{{ $module_icon }}"></i> {{ __('Profile') }} <small class="text-muted">{{ __($module_action) }}</small>
 
             <x-slot name="subtitle">
                 {{-- @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)]) --}}
@@ -66,23 +98,19 @@ justify-content: center;
         
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{-- {{ html()->modelForm($userprofile, 'PATCH', route('backend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }} --}}
-                
-                
+                {{-- {{ html()->modelForm('POST', route('inbound.profile.update', "1"))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }}    --}}
+                <form action="{{ route('inbound.profile.update', $userprofile->user_id) }}" method="post" enctype="multipart/form-data">
+                    @csrf
                 <div class="form-group row">
                     {{-- {{ html()->label(__('labels.backend.users.fields.avatar'))->class('col-md-2 form-control-label')->for('name') }} --}}
-
-                    {{-- <div class="col-md-5">
-                        <img src="{{asset($$module_name_singular->avatar)}}" class="user-profile-image img-fluid img-thumbnail" style="max-height:100px; max-width:100px; border-radius: 50%" />
-                    </div>
-                    <div class="col-md-5">
-                        <input id="file-multiple-input" name="avatar" multiple="" type="file">
-                    </div> --}}
+                    
                     <div class="col-md-2">
                         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
                         <div class="wrap">
-                            <img src="https://i.stack.imgur.com/mSXoO.png" class="main-profile-img" />
+                            <img src="{{ asset($userprofile->avatar) }}" class="main-profile-img" />
+                            <input class="inputfile" name="avatar" multiple="" type="file">
+                            <label><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg></label>
                         </div>
                     </div>
 
@@ -98,8 +126,8 @@ justify-content: center;
                     <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
-                            $field_name = '<b>NIK</b>';
-                            $field_lable = $field_name;
+                            $field_name = 'nik';
+                            $field_lable = '<b>NIK</b>';
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
@@ -107,15 +135,15 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NIK anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->value($userprofile->nik)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
                     <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
-                            $field_name = '<b>Nama</b>';
-                            $field_lable = $field_name;
+                            $field_name = 'nama';
+                            $field_lable = '<b>Nama</b>';
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
@@ -123,15 +151,15 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan Nama anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->value($userprofile->name)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
                     <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
-                            $field_name = '<b>Email Address</b>';
-                            $field_lable = $field_name;
+                            $field_name = 'email';
+                            $field_lable = '<b>Email Address</b>';
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
@@ -139,15 +167,15 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan Email anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->value($userprofile->email)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
                     <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
-                            $field_name = '<b>NISN</b>';
-                            $field_lable = $field_name;
+                            $field_name = 'nisn';
+                            $field_lable = '<b>NISN</b>';
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
@@ -155,15 +183,15 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NISN anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->value($userprofile->nisn)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
                     <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
-                            $field_name = '<b>Address</b>';
-                            $field_lable = $field_name;
+                            $field_name = 'address';
+                            $field_lable = '<b>Address</b>';
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
@@ -171,15 +199,15 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->textarea($field_name)->placeholder("Masukan alamat anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->textarea($field_name)->value($userprofile->address)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
-                            $field_name = '<b>NIM PT Asal</b>';
-                            $field_lable = $field_name;
+                            $field_name = 'nim_asal';
+                            $field_lable = '<b>NIM PT Asal</b>';
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
@@ -187,15 +215,15 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan NIM PT Asal anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->value($userprofile->nim_asal)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                     
                     <div class="row mt-4">
                         <div class="col-md-2">
                             <?php
-                            $field_name = '<b>PT Asal</b>';
-                            $field_lable = $field_name;
+                            $field_name = 'pt_asal';
+                            $field_lable = '<b>PT Asal</b>';
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
@@ -203,7 +231,7 @@ justify-content: center;
                         </div>
     
                         <div class="col-md-10">
-                            {{ html()->text($field_name)->placeholder("Masukan PT Asal anda disini")->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->text($field_name)->value($userprofile->pt_asal)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                 </div>
@@ -224,14 +252,16 @@ justify-content: center;
                         </div> --}}
                         <div class="col">
                             <button onclick="window.history.back();" type="button" style="border-radius: 16px; color: #624F82; border-color: #624F82" class="btn btn-outline-primary">Cancel</button>
-                            <x-button style="width: 80px">
-                                {{ __('Save') }}
-                            </x-button>
+                                {{-- <x-button  style="width: 80px">
+                                    {{ __('Save') }}
+                                </x-button> --}}
+                                <x-backend.buttons.save />
                         </div>
                         
                     </div>
                 </div>
-                {{ html()->closeModelForm() }}
+                {{-- {{ html()->closeModelForm() }} --}}
+                </form>
             </div>
             <!--/.col-->
         </div>
