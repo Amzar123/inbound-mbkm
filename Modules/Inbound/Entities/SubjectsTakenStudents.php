@@ -5,19 +5,15 @@ namespace Modules\Inbound\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class File extends Model
+class SubjectsTakenStudents extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'file_id',
-        'file_name',
-        'user_id',
-        'updated_at' 	
-    ];
+    protected $fillable = [];
+    protected $table = 'subjects_taken_students';
     
     protected static function newFactory()
     {
-        return \Modules\Inbound\Database\factories\FileFactory::new();
+        return \Modules\Inbound\Database\factories\SubjectsTakenStudentsFactory::new();
     }
 }

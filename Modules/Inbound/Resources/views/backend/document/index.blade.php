@@ -277,7 +277,9 @@
         </x-backend.section-header>
         <hr>
         <div class="">
-            <form action="test-upload.php" method="POST" enctype="multipart/form-data" >   <div class="container">
+            {{-- action="{{ route('inbound.upload') }}" --}}
+            <form action="{{ route('inbound.upload') }}" method="POST" enctype="multipart/form-data" >   <div class="container">
+                @csrf
                 <div class="row">
                  <div class="col-md-12">
                   <div class="form-group">     
@@ -301,7 +303,7 @@
                       <i class="nav-icon fas fa-upload"></i>
                       <p>Pilih file atau tarik kesini.</p>
                      </div>
-                     <input type="file" name="img_logo" class="dropzone">
+                     <input type="file" name="file_loa" class="dropzone">
                     </div>      
                   </div>
                  </div>
