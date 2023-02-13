@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Modules\Article\Entities\SubjectsTakenStudents;
 
 class DocumentController extends Controller
 {
@@ -40,9 +41,13 @@ class DocumentController extends Controller
 
         // return view('backend.docs.index');
 
+        $mata_kuliah = SubjectsTakenStudents::all();
+
+        dd($mata_kuliah);
+
         return view(
             "backend.docs.index",
-            compact('module_title', 'module_icon')
+            // compact('module_title', 'module_icon', 'mata_kuliah')
         );
     }
 }

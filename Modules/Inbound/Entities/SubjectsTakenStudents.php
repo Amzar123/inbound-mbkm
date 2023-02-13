@@ -9,7 +9,14 @@ class SubjectsTakenStudents extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'kode',
+        'name',
+        'sks',
+        'dosen',
+        'subject_id',
+        'user_id'
+    ];
     protected $table = 'subjects_taken_students';
     
     protected static function newFactory()

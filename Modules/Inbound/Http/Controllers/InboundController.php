@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Modules\Inbound\Entities\SubjectsTakenStudents;
+
 class InboundController extends Controller
 {
     public function __construct()
@@ -41,9 +43,11 @@ class InboundController extends Controller
 
         // return view('backend.docs.index');
 
+        $mata_kuliah = SubjectsTakenStudents::all();
+
         return view(
             "inbound::backend.document.index",
-            compact('module_title', 'module_icon')
+            compact('module_title', 'module_icon', 'mata_kuliah')
         );
     }
 

@@ -95,7 +95,7 @@
         <hr>
         <div class="row mt-4">
             <div class="col">
-                <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
+                {{-- <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
                     <thead>
                         <tr>
                             <th>
@@ -120,9 +120,9 @@
                     </thead>
 
                     <tbody>
-                        {{-- @foreach($$module_name as $module_name_singular) --}}
+                        @foreach($$module_name as $module_name_singular)
                         <tr>
-                            {{-- <td>
+                            <td>
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
@@ -140,7 +140,7 @@
                             <td class="text-end">
                                 <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
                                 <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
-                            </td> --}}
+                            </td>
 
                             <td>
                                 haha
@@ -161,16 +161,38 @@
                                 haha
                             </td>
                         </tr>
-                        {{-- @endforeach --}}
+                        @endforeach
                     </tbody>
-                </table>
+                </table> --}}
 
-                <div class="col" style="float: right">
-                    {{-- <button onclick="window.history.back();" type="button" style="border-radius: 16px; color: #624F82; border-color: #624F82" class="btn btn-outline-primary">Cancel</button> --}}
-                    <x-button style="width: 80px">
+                <form action="{{ route('inbound.subject') }}" method="POST">
+                    @csrf
+
+                    <div class="flex justify-content-center">
+                        <div class="d-flex-item">
+                            <label for="">Kode</label>
+                            <label for="">Nama</label>
+                            <label for="">SKS</label>
+                            <label for="">Dosen</label>
+                        </div>
+
+                        <div class="flex-item">
+                            <input type="text" name="kode_mata_kuliah" id="">
+                            <input type="text" name="nama_mata_kuliah" id="">
+                            <input type="number" name="sks_mata_kuliah" id="">
+                            <input type="text" name="dosen_pengampu" id="">
+                        </div>
+                    </div>
+
+                    <div class="col mt-2" style="float: left">
+                        {{-- <button onclick="window.history.back();" type="button" style="border-radius: 16px; color: #624F82; border-color: #624F82" class="btn btn-outline-primary">Cancel</button> --}}
+                    <x-button style="width: 80px"  type="submit">
                         {{ __('Tambah') }}
                     </x-button>
                 </div>
+
+                </form>
+
             </div>
         </div>
 
@@ -180,19 +202,19 @@
                     <thead>
                         <tr>
                             <th>
-                                #
+                                No
                             </th>
                             <th>
-                                Name
+                                Kode Mata Kuliah
                             </th>
                             <th>
-                                Code
+                                Mata Kuliah
                             </th>
                             <th>
-                                Updated At
+                                Dosen Pengampu
                             </th>
                             <th>
-                                Created By
+                                SKS
                             </th>
                             <th class="text-end">
                                 Action
@@ -201,57 +223,46 @@
                     </thead>
 
                     <tbody>
-                        {{-- @foreach($$module_name as $module_name_singular) --}}
+                        <?php $index = 1 ?>
+                        @foreach($mata_kuliah as $item )
                         <tr>
+                            <td>
+                                {{ $index}}
+                            </td>
+                            <td>
+                                {{ $item->kode }}
+                            </td>
+                            <td>
+                                {{ $item->name }}
+                            </td>
+                            <td>
+                                {{ $item->dosen }}
+                            </td>
+                            <td>
+                                {{ $item->sks }}
+                            </td>
                             {{-- <td>
-                                {{ $module_name_singular->id }}
-                            </td>
-                            <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
-                            </td>
-                            <td>
-                                {{ $module_name_singular->slug }}
-                            </td>
-                            <td>
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td>
                                 {{ $module_name_singular->created_by }}
-                            </td>
-                            <td class="text-end">
+                            </td> --}}
+                            {{-- <td class="text-end">
                                 <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
                                 <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td> --}}
-
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
                         </tr>
-                        {{-- @endforeach --}}
+                        <?php $index++ ?>
+                        @endforeach
                     </tbody>
                 </table>
 
-                <div class="col" style="float: right">
+                {{-- <div class="col" style="float: right">
                     <button onclick="window.history.back();" type="button" style="border-radius: 16px; color: #624F82; border-color: #624F82" class="btn btn-outline-primary">Cancel</button>
                     <x-button style="width: 80px">
                         {{ __('Usulkan') }}
                     </x-button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

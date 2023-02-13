@@ -5,6 +5,10 @@ namespace Modules\Inbound\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+
+use Modules\Inbound\Entities\SubjectsTakenStudents;
 
 class SubjectsTakenStudentsController extends Controller
 {
@@ -34,6 +38,19 @@ class SubjectsTakenStudentsController extends Controller
     public function store(Request $request)
     {
         //
+        $data = [
+          'kode' => $request->kode_mata_kuliah ,
+          'name' => $request->nama_mata_kuliah ,
+          'dosen' => $request->dosen_pengampu ,
+          'sks' => $request->sks_mata_kuliah,
+          'subject_id' => Uuid::uuid4()->toString(),
+          'user_id' => auth()->user()->id
+        ];
+
+        SubjectsTakenStudents::create($data);
+
+        return redirect('inbound/document');
+        
     }
 
     /**
