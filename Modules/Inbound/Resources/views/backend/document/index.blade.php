@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-{{-- @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection --}}
+<!-- {{-- @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection --}} -->
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -93,108 +93,33 @@
         </x-backend.section-header>
 
         <hr>
-        <div class="row mt-4">
-            <div class="col">
-                {{-- <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Code
-                            </th>
-                            <th>
-                                Updated At
-                            </th>
-                            <th>
-                                Created By
-                            </th>
-                            <th class="text-end">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach($$module_name as $module_name_singular)
-                        <tr>
-                            <td>
-                                {{ $module_name_singular->id }}
-                            </td>
-                            <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
-                            </td>
-                            <td>
-                                {{ $module_name_singular->slug }}
-                            </td>
-                            <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
-                            </td>
-                            <td>
-                                {{ $module_name_singular->created_by }}
-                            </td>
-                            <td class="text-end">
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
-                            </td>
-
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                            <td>
-                                haha
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table> --}}
-
-                <form action="{{ route('inbound.subject') }}" method="POST">
-                    @csrf
-
-                    <div class="flex justify-content-center">
-                        <div class="d-flex-item">
-                            <label for="">Kode</label>
-                            <label for="">Nama</label>
-                            <label for="">SKS</label>
-                            <label for="">Dosen</label>
-                        </div>
-
-                        <div class="flex-item">
-                            <input type="text" name="kode_mata_kuliah" id="">
-                            <input type="text" name="nama_mata_kuliah" id="">
-                            <input type="number" name="sks_mata_kuliah" id="">
-                            <input type="text" name="dosen_pengampu" id="">
-                        </div>
-                    </div>
-
-                    <div class="col mt-2" style="float: left">
-                        {{-- <button onclick="window.history.back();" type="button" style="border-radius: 16px; color: #624F82; border-color: #624F82" class="btn btn-outline-primary">Cancel</button> --}}
-                    <x-button style="width: 80px"  type="submit">
-                        {{ __('Tambah') }}
-                    </x-button>
+        <form action="{{ route('inbound.subject') }}" method="POST">
+            @csrf
+            <div class="row mb-2">
+                <div class="col">
+                    <label for="inputkodematakuliah" class="form-label">Kode mata kuliah</label>
+                    <input type="text" class="form-control" name="kode_mata_kuliah" id="inputkodematakuliah" placeholder="Masukan kode mata kuliah" aria-label="Kode mata kuliah">
                 </div>
-
-                </form>
-
+                <div class="col">
+                    <label for="namamatakuliah" class="form-label">Nama mata kuliah</label>
+                    <input type="text" class="form-control" name="nama_mata_kuliah" id="namamatakuliah" placeholder="Masukan nama mata kuliah disini" aria-label="Nama mata kuliah">
+                </div>
             </div>
-        </div>
+
+            <div class="row mb-3">
+                <div class="col-8">
+                    <label for="inputdosenpengampu" class="form-label">Dosen pengampu</label>
+                    <input type="text" class="form-control" name="dosen_pengampu" id="inputdosenpengampu" placeholder="Masukan dosen pengampu disini" aria-label="Kode mata kuliah">
+                </div>
+                <div class="col">
+                    <label for="inputbobotsks" class="form-label">Bobot SKS</label>
+                    <input type="number" min="1" max="4" class="form-control" name="sks_mata_kuliah" id="inputbobotsks" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                </div>
+            </div>
+            <x-button style="width: 80px"  type="submit">
+                {{ __('Tambah') }}
+            </x-button>
+        </form>
 
         <div class="row mt-4">
             <div class="col">
@@ -216,7 +141,7 @@
                             <th>
                                 SKS
                             </th>
-                            <th class="text-end">
+                            <th class="text-center">
                                 Action
                             </th>
                         </tr>
@@ -241,28 +166,14 @@
                             <td>
                                 {{ $item->sks }}
                             </td>
-                            {{-- <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
-                            </td>
                             <td>
-                                {{ $module_name_singular->created_by }}
-                            </td> --}}
-                            {{-- <td class="text-end">
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
-                            </td> --}}
+                                <center><a href="{{route('inbound.subject.delete', $item->subject_id)}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i> Delete</a></center>
+                            </td>
                         </tr>
                         <?php $index++ ?>
                         @endforeach
                     </tbody>
                 </table>
-
-                {{-- <div class="col" style="float: right">
-                    <button onclick="window.history.back();" type="button" style="border-radius: 16px; color: #624F82; border-color: #624F82" class="btn btn-outline-primary">Cancel</button>
-                    <x-button style="width: 80px">
-                        {{ __('Usulkan') }}
-                    </x-button>
-                </div> --}}
             </div>
         </div>
     </div>
