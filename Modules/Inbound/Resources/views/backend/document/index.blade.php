@@ -13,7 +13,8 @@
  *
  * Style.css
  *
- */.container {
+ */
+ .container {
     padding: 50px 200px;
 }
 .box {

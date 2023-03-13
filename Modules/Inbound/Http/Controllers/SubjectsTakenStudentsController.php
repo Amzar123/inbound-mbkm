@@ -91,8 +91,6 @@ class SubjectsTakenStudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
-        // dd($id);
         SubjectsTakenStudents::where('subject_id',$id)->delete();
         return redirect('inbound/document');
     }
