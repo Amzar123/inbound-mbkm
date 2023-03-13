@@ -24,6 +24,27 @@
 
     <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
 
+    <!-- Custom CSS -->
+    <link rel="icon" href="https://www.upi.edu/favicon.ico" type="image/x-icon">
+    <link href="https://www.upi.edu/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="google-site-verification" content="hrI9M_lTsEHbpu9HEikk8l7pHONG88ZonuaxYN2wgVo" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://www.upi.edu/css/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://www.upi.edu/css/bootstrap.min.css">
+
+    <!-- Owlcarousel CSS -->
+    <link rel="stylesheet" href="https://www.upi.edu/owlcarousel/css/owl.carousel.css">
+
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="https://www.upi.edu/dist/jquery.fancybox.min.css">
+
+    <!-- Fontawesome -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.upi.edu/fontawesome/css/all.css">
+
     @stack('after-styles')
 
     <x-google-analytics />

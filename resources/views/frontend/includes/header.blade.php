@@ -23,7 +23,7 @@
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
-                        <a href="{{ route('frontend.posts.index') }}" class="text-white border-transparent border-b-2 hover:border-white px-3 py-2 text-base font-medium transition ease-out duration-300">
+                        <a href="{{ route('frontend.categories.index') }}" class="text-white border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
                             {{__('Home')}}
                         </a>
                         <a href="{{ route('frontend.categories.index') }}" class="text-white border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
