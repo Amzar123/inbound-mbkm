@@ -1,3 +1,14 @@
+<style>
+    #login-button{
+        background-color: #9F73AB;
+        border-radius: 30px;
+        text-decoration: none;
+    }
+    #login-button:hover {
+      background-color: #624F82;
+    }
+
+  </style>
 <nav style="background-color: #624F82" x-data="{ showMobileNav: false }">
     <div class="max-w-7xl mx-auto px-2 py-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
@@ -39,7 +50,7 @@
                 <div class="ml-3 relative" x-data="{ isUserMenuOpen: false }">
                     <div class="flex flex-row">
                         @guest
-                        <a href="{{ route('login') }}" style="background-color: #9F73AB; border-radius: 30px" class="flex items-center mx-2 px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transfor focus:outline-none focus:bg-purple-500 invisible md:visible">
+                        <a href="{{ route('login') }}" id="login-button" class="flex items-center mx-2 px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transfor focus:outline-none focus:bg-purple-500 hover md:visible">
                             <span class="mx-1">{{__('Login')}}</span>
                         </a>
                         @else

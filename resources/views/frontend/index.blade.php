@@ -5,6 +5,12 @@
 @section('content')
 <section >
     <div class="flex justify-content-between" style="background-image: url('{{asset('img/wavesOpacity.svg')}}'); background-repeat:no-repeat; width: 100%">
+            <!-- your content -->
+            <div style="bottom: 0; position: absolute; margin-buttom: 500px">
+              <!-- your bottom div content -->
+              <h2>Leading and outstanding</h2>
+            </div>
+          
         <div class="ml-auto">
             <img src="{{asset('img/student-pic.png')}}" alt="{{ app_name() }}">
         </div>

@@ -19,4 +19,6 @@ Route::prefix('inbound')->group(function() {
     Route::post("upload", ['as' => "inbound.upload", 'uses' => "FileController@store"]);
     Route::post("subject", ['as' => "inbound.subject", 'uses' => "SubjectsTakenStudentsController@store"]);
     Route::delete("subject/{id}", ['as' => "inbound.subject.delete", 'uses' => "SubjectsTakenStudentsController@destroy"]);
+
+    Route::get("peserta", ['as' => "inbound.peserta", 'uses' => "UserController@getPesertaInbound"]);
 });

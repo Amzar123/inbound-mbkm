@@ -75,14 +75,42 @@ class GenerateMenus
             ->data([
                 'order'         => 102,
                 'activematches' => 'profile*',
+                'permission'    => ['update_profile'],
+            ])
+            ->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+            // Berkas
+            $menu->add('<i class="nav-icon fas fa-file"></i> Berkas', [
+                'route' => 'document.index',
+                'class' => 'nav-item',
+            ])
+            ->data([
+                'order'         => 103,
+                'activematches' => 'document*',
+                'permission'    => ['upload_berkas'],
+            ])
+            ->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+            // Daftar peserta
+            $menu->add('<i class="nav-icon fas fa-users"></i> Peserta', [
+                'route' => 'inbound.peserta',
+                'class' => 'nav-item',
+            ])
+            ->data([
+                'order'         => 103,
+                'activematches' => 'document*',
                 'permission'    => [],
             ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
 
-            // Profile
-            $menu->add('<i class="nav-icon fas fa-file"></i> Berkas', [
+            // Program
+            $menu->add('<i class="nav-icon fas fa-list-check"></i> Program', [
                 'route' => 'document.index',
                 'class' => 'nav-item',
             ])

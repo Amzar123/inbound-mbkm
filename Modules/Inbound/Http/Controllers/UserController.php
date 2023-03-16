@@ -212,4 +212,25 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Display all of inbound participants.
+     * @return Renderable
+     */
+    public function getPesertaInbound()
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'List';
+
+        return view(
+            "inbound::backend.peserta.index",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular')
+        );
+    }
 }
