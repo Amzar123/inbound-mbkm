@@ -21,4 +21,8 @@ Route::prefix('inbound')->group(function() {
     Route::delete("subject/{id}", ['as' => "inbound.subject.delete", 'uses' => "SubjectsTakenStudentsController@destroy"]);
 
     Route::get("peserta", ['as' => "inbound.peserta", 'uses' => "UserController@getPesertaInbound"]);
+
+    $controller_name = "UserController";
+    $module_name = "users";
+    Route::get("$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);
 });

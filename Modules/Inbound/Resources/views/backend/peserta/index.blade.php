@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
 
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
@@ -34,83 +34,18 @@
                                 <i class="fas fa-eye-slash"></i> View trash
                             </a>
                         </li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li> -->
                     </ul>
                 </div>
                 @endcan
             </x-slot>
         </x-backend.section-header>
 
-        <div class="row mt-4">
-            <div class="col">
-                <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Code
-                            </th>
-                            <th>
-                                Updated At
-                            </th>
-                            <th>
-                                Created By
-                            </th>
-                            <th class="text-end">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
+        <livewire:peserta-index />
 
-                    <tbody>
-                        @foreach($$module_name as $module_name_singular)
-                        <tr>
-                            <td>
-                                {{ $module_name_singular->id }}
-                            </td>
-                            <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
-                            </td>
-                            <td>
-                                {{ $module_name_singular->slug }}
-                            </td>
-                            <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
-                            </td>
-                            <td>
-                                {{ $module_name_singular->created_by }}
-                            </td>
-                            <td class="text-end">
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
     <div class="card-footer">
-        <div class="row">
-            <div class="col-7">
-                <div class="float-left">
-                    Total {{ $$module_name->total() }} {{ ucwords($module_name) }}
-                </div>
-            </div>
-            <div class="col-5">
-                <div class="float-end">
-                    {!! $$module_name->render() !!}
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
+
 @endsection

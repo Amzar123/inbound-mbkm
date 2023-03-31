@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
 
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
@@ -19,11 +19,8 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
             <x-slot name="toolbar">
-                @can('add_'.$module_name)
                 <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
-                @endcan
 
-                @can('restore_'.$module_name)
                 <div class="btn-group">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-cog"></i>
@@ -39,30 +36,25 @@
                         </li> -->
                     </ul>
                 </div>
-                @endcan
             </x-slot>
         </x-backend.section-header>
 
         <div class="row mt-4">
             <div class="col">
-                <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Updated At
-                            </th>
-                            <th class="text-end">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-hover ">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ __('labels.backend.users.fields.name') }}</th>
+                                <th>{{ __('labels.backend.users.fields.email') }}</th>
+                                <th>{{ __('labels.backend.users.fields.status') }}</th>
+                                <th>{{ __('labels.backend.users.fields.roles') }}</th>
+                                <th class="text-end">{{ __('labels.backend.action') }}</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -81,7 +73,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @push ('after-styles')
@@ -110,8 +101,16 @@
                 name: 'name'
             },
             {
-                data: 'updated_at',
-                name: 'updated_at'
+                data: 'email',
+                name: 'email'
+            },
+            {
+                data: 'status',
+                name: 'status'
+            },
+            {
+                data: 'user_roles',
+                name: 'user_roles'
             },
             {
                 data: 'action',

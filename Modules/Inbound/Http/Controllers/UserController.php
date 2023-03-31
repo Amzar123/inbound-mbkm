@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Log;
 
 use App\Models\Userprofile;
 use App\Models\User;
-
 use App\Events\Backend\UserProfileUpdated;
 use Laracasts\Flash\Flash;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -228,9 +228,65 @@ class UserController extends Controller
 
         $module_action = 'List';
 
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
+
+        $$module_name = $module_model::paginate();
+
+        Log::info("'$title' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
         return view(
             "inbound::backend.peserta.index",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular')
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
         );
+    }
+
+    public function index_data()
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'List';
+
+        $$module_name = $module_model::select('id', 'name', 'username', 'email', 'email_verified_at', 'updated_at', 'status');
+
+        $data = $$module_name;
+
+        return Datatables::of($$module_name)
+                        ->addColumn('action', function ($data) {
+                            $module_name = $this->module_name;
+
+                            return view('backend.includes.user_actions', compact('module_name', 'data'));
+                        })
+                        ->addColumn('user_roles', function ($data) {
+                            $module_name = $this->module_name;
+
+                            return view('backend.includes.user_roles', compact('module_name', 'data'));
+                        })
+                        ->editColumn('name', '<strong>{{$name}}</strong>')
+                        ->editColumn('status', function ($data) {
+                            $return_data = $data->status_label;
+                            $return_data .= '<br>'.$data->confirmed_label;
+
+                            return $return_data;
+                        })
+                        ->editColumn('updated_at', function ($data) {
+                            $module_name = $this->module_name;
+
+                            $diff = Carbon::now()->diffInHours($data->updated_at);
+
+                            if ($diff < 25) {
+                                return $data->updated_at->diffForHumans();
+                            } else {
+                                return $data->updated_at->isoFormat('LLLL');
+                            }
+                        })
+                        ->rawColumns(['name', 'action', 'status', 'user_roles'])
+                        ->orderColumns(['id'], '-:column $1')
+                        ->make(true);
     }
 }
