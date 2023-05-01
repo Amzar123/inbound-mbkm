@@ -22,6 +22,11 @@ Route::prefix('inbound')->group(function() {
 
     Route::get("peserta", ['as' => "inbound.peserta", 'uses' => "UserController@getPesertaInbound"]);
 
+    Route::get("program", ['as' => "program.index", 'uses' => "ProgramController@index"]);
+    Route::post("program", ['as' => "program.store", 'uses' => "ProgramController@store"]);
+    Route::delete("program/{id}", ['as' => "program.destroy", 'uses' => "ProgramController@destroy"]);
+    Route::get("program/{id}", ['as' => "program.show", 'uses' => "ProgramController@show"]);
+
     $controller_name = "UserController";
     $module_name = "users";
     Route::get("$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);

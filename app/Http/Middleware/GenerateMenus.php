@@ -111,12 +111,12 @@ class GenerateMenus
 
             // Program
             $menu->add('<i class="nav-icon fas fa-list-check"></i> Program', [
-                'route' => 'document.index',
+                'route' => 'program.index',
                 'class' => 'nav-item',
             ])
             ->data([
                 'order'         => 103,
-                'activematches' => 'document*',
+                'activematches' => 'program*',
                 'permission'    => [],
             ])
             ->link->attr([
