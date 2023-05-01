@@ -7,11 +7,10 @@
                 <thead>
                     <tr>
                         <th>{{ __('labels.backend.users.fields.name') }}</th>
+                        <th>{{ __('labels.backend.users.fields.name') }}</th>
                         <th>{{ __('labels.backend.users.fields.email') }}</th>
-                        <th>{{ __('labels.backend.users.fields.status') }}</th>
                         <th>{{ __('labels.backend.users.fields.roles') }}</th>
                         <th>{{ __('labels.backend.users.fields.permissions') }}</th>
-                        <th>{{ __('labels.backend.users.fields.social') }}</th>
                         <th class="text-end">{{ __('labels.backend.action') }}</th>
                     </tr>
                 </thead>
@@ -19,17 +18,14 @@
                     @foreach ($users as $user)
                     <tr>
                         <td>
-                            <strong>
-                                <a href="{{route('backend.users.show', $user->id)}}">
-                                    {{ $user->name }}
-                                </a>
-                            </strong>
+                                {{ $user->id }}
+                        </td>
+                        <td>
+                            {{-- <a href="{{route('backend.users.show', $user->id)}}"> --}}
+                                {{ $user->name }}
+                            {{-- </a> --}}
                         </td>
                         <td>{{ $user->email }}</td>
-                        <td>
-                            {!! $user->status_label !!}
-                            {!! $user->confirmed_label !!}
-                        </td>
                         <td>
                             @if($user->getRoleNames()->count() > 0)
                             <ul class="fa-ul">
@@ -47,15 +43,6 @@
                                 @endforeach
                             </ul>
                             @endif
-                        </td>
-                        <td>
-                            <ul class="list-unstyled">
-                                @foreach ($user->providers as $provider)
-                                <li>
-                                    <i class="fab fa-{{ $provider->provider }}"></i> {{ label_case($provider->provider) }}
-                                </li>
-                                @endforeach
-                            </ul>
                         </td>
 
                         <td class="text-end">
