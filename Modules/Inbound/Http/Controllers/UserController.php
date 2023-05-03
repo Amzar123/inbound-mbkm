@@ -90,32 +90,31 @@ class UserController extends Controller
      * @param int $id
      * @return Renderable
      */
-    // public function show($id)
-    // {
-    //     dd("ini id nya ", $id);
-    //     $module_title = $this->module_title;
-    //     $module_name = $this->module_name;
-    //     $module_path = $this->module_path;
-    //     $module_icon = $this->module_icon;
-    //     $module_model = $this->module_model;
-    //     $module_name_singular = Str::singular($module_name);
+    public function show($id)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
 
-    //     $module_action = 'Edit Profile';
+        $module_action = 'Edit Profile';
 
-    //     if (! auth()->user()->can('edit_users')) {
-    //         $id = auth()->user()->id;
-    //     }
+        // if (! auth()->user()->can('edit_users')) {
+        //     $id = auth()->user()->id;
+        // }
 
-    //     $$module_name_singular = User::findOrFail($id);
-    //     $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+        $$module_name_singular = User::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
-    //     Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+        // Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-    //     return view(
-    //         "inbound::backend.user.Profile",
-    //         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', "$module_name_singular", 'userprofile')
-    //     );
-    // }
+        return view(
+            "inbound::backend.peserta.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', "$module_name_singular", 'userprofile')
+        );
+    }
 
     /**
      * Show the form for editing the specified resource.

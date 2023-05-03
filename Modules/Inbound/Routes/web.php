@@ -21,6 +21,7 @@ Route::prefix('inbound')->group(function() {
     Route::delete("subject/{id}", ['as' => "inbound.subject.delete", 'uses' => "SubjectsTakenStudentsController@destroy"]);
 
     Route::get("peserta", ['as' => "inbound.peserta", 'uses' => "UserController@getPesertaInbound"]);
+    Route::get("peserta/{id}", ['as' => "inbound.peserta.show", 'uses' => "UserController@show"]);
 
     Route::get("program", ['as' => "program.index", 'uses' => "ProgramController@index"]);
     Route::post("program", ['as' => "program.store", 'uses' => "ProgramController@store"]);
