@@ -1,10 +1,10 @@
 @extends('backend.layouts.app')
 
-<!-- {{-- @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection --}} -->
+@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection 
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    {{-- <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend-breadcrumb-item> --}}
+    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -12,11 +12,11 @@
 <div class="card">
     <div class="card-body">
         <x-backend.section-header>
-            {{-- <i class="{{ $module_icon }}"></i> {{ __($module_title) }}  --}}
-            {{-- <small class="text-muted">{{ __($module_action) }}</small> --}}
+            <i class="{{ $module_icon }}"></i> {{ __($module_title) }} 
+            <small class="text-muted">{{ __($module_action) }}</small>
 
             <x-slot name="subtitle">
-                {{-- @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)]) --}}
+                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
             <x-slot name="toolbar">
                 <x-backend.buttons.return-back />
@@ -24,6 +24,7 @@
         </x-backend.section-header>
 
         <hr>
+        <h4>Tambahkan program</h4>
         <form action="{{ route('program.store') }}" method="POST">
             @csrf
             <div class="row mb-2">
@@ -52,6 +53,8 @@
             </x-button>
         </form>
 
+        <hr>
+        <h4>Daftar program</h4>
         <div class="row mt-4">
             <div class="col">
                 <table id="datatable" class="table table-bordered table-hover table-responsive-sm">

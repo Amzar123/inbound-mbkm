@@ -38,10 +38,19 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        $programs = Program::all();
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'List';
+
+        $programs = $module_model::paginate();
+
         return view(
             'inbound::backend.program.index', 
-            compact('programs'));
+            compact('programs','module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
