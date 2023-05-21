@@ -42,6 +42,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('status')->default(1)->unsigned();
 
+            $table->string('nik')->nullable();
+            $table->string('nisn')->nullable();
+            $table->string('nim_asal')->nullable();
+            $table->string('pt_asal')->nullable();
+
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
