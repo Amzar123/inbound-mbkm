@@ -39,7 +39,6 @@ class RegisteredUserController extends Controller
             'nim_kampus_asal' => ['required', 'string', 'max: 50'],
             'pt_asal' => ['required', 'string', 'max: 50'],
             'full_name' => ['required', 'string', 'max:191'],
-            // 'last_name' => ['required', 'string', 'max:191'],
             'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);

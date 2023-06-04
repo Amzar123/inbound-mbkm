@@ -20,13 +20,13 @@
     <link rel="stylesheet" href="https://www.upi.edu/fontawesome/css/all.css"> --}}
 
 </head>
-<footer style="bottom: 0; position: absolute; width: 100%">
+<footer style="bottom: 0; position: absolute; width: 100%;" class="mt-10">
     <section id="footer-top" style="background-color: #9F73AB">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-12">
+                <div class="col-md-3 col-sm-12 mt-7">
                     <aside class="logo">
-                        <a href="https://www.upi.edu"> <img src="https://www.upi.edu/images/UPI-Logo-white.png" class="img-fluid" width="200" alt=""></a>
+                        <a href="https://www.upi.edu"> <img src="https://www.upi.edu/images/UPI-Logo-white.png" class="img-fluid" alt=""></a>
                     </aside>
                 </div>
                 <div class="col-md-3 col-sm-12">

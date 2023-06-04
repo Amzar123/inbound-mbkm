@@ -15,12 +15,10 @@
             <img src="{{asset('img/student-pic.png')}}" alt="{{ app_name() }}">
         </div>
     </div> 
-    <div style="margin-left: 20%">
-        @if(user_registration())
-        {{-- <a href="{{ route('register') }}" style="background-color: #624F82; border-radius: 30px" class=" px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform invisible md:visible">
+    <div>
+        <a href="{{ route('register') }}" id="login-button" class="mx-5 px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transfor focus:outline-none focus:bg-purple-500 hover md:visible">
             <span class="mx-1">{{__('Register')}}</span>
-        </a> --}}
-        @endif
+        </a>
     </div>
 </section>
 @endsection

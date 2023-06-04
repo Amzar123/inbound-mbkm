@@ -53,9 +53,6 @@
 <body>
 
     @include('frontend.includes.header')
-    {{-- @include('frontend.includes.sidebar') --}}
-
-
     <main>
         @yield('content')
     </main>

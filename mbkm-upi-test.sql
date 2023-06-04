@@ -405,6 +405,7 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 (5, 'user', 'web', '2023-01-24 08:54:08', '2023-01-24 08:54:08'),
 (6, 'program studi', 'web', '2023-02-12 00:56:02', '2023-02-12 00:56:02'),
 (7, 'akademik', 'web', '2023-02-12 00:56:36', '2023-02-12 00:56:36');
+(8, 'mahasiswa', 'web', '2023-02-12 00:56:36', '2023-02-12 00:56:36');
 
 -- --------------------------------------------------------
 
@@ -557,12 +558,12 @@ CREATE TABLE `userprofiles` (
 -- Dumping data for table `userprofiles`
 --
 
-INSERT INTO `userprofiles` (`id`, `user_id`, `name`, `first_name`, `last_name`, `username`, `email`, `mobile`, `gender`, `url_website`, `url_facebook`, `url_twitter`, `url_instagram`, `url_linkedin`, `date_of_birth`, `address`, `bio`, `avatar`, `user_metadata`, `last_ip`, `login_count`, `last_login`, `email_verified_at`, `status`, `nik`, `nisn`, `nim_asal`, `pt_asal`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Super Admin', 'Super', 'Admin', '100001', 'super@admin.com', '+12483171988', 'Female', NULL, NULL, NULL, NULL, NULL, '2017-03-26', NULL, NULL, 'img/default-avatar.jpg', NULL, '127.0.0.1', 16, '2023-01-29 03:43:03', NULL, 1, NULL, NULL, NULL, '', NULL, 1, NULL, '2023-01-24 08:54:07', '2023-01-29 03:43:03', NULL),
-(2, 2, 'Admin Istrator', 'Admin', 'Istrator', '100002', 'admin@admin.com', '(210) 875-9350', 'Other', NULL, NULL, NULL, NULL, NULL, '1985-04-21', NULL, NULL, 'img/default-avatar.jpg', NULL, '127.0.0.1', 1, '2023-02-12 03:24:50', NULL, 1, NULL, NULL, NULL, '', NULL, 2, NULL, '2023-01-24 08:54:08', '2023-02-12 03:24:50', NULL),
-(3, 3, 'Manager', 'Manager', 'User User', '100003', 'manager@manager.com', '(206) 915-0555', 'Male', NULL, NULL, NULL, NULL, NULL, '1973-08-04', NULL, NULL, 'img/default-avatar.jpg', NULL, NULL, 0, NULL, NULL, 1, NULL, NULL, NULL, '', NULL, NULL, NULL, '2023-01-24 08:54:08', '2023-01-24 08:54:08', NULL),
-(4, 4, 'Executive User', 'Executive', 'User', '100004', 'executive@executive.com', '1-331-943-1285', 'Male', NULL, NULL, NULL, NULL, NULL, '2021-04-02', NULL, NULL, 'img/default-avatar.jpg', NULL, NULL, 0, NULL, NULL, 1, NULL, NULL, NULL, '', NULL, NULL, NULL, '2023-01-24 08:54:08', '2023-01-24 08:54:08', NULL),
-(5, 5, 'General User', 'General', 'User', '100005', 'user@user.com', '(304) 791-9341', 'Female', NULL, NULL, NULL, NULL, NULL, '1977-08-05', 'Bandung', NULL, 'http://localhost:8000/media/6/3kQUGGfFbN9JFLxzfGU0Eo8bEUs31DkQ4neTnere.jpg', NULL, '127.0.0.1', 21, '2023-02-13 02:53:12', NULL, 1, '1298192819829', '123456789', '2008433', 'Universitas Pendidikan Indonesia', NULL, 5, NULL, '2023-01-24 08:54:08', '2023-02-13 02:53:12', NULL);
+INSERT INTO `userprofiles` (`id`, `user_id`, `name`, `username`, `email`, `mobile`, `gender`, `url_website`, `url_facebook`, `url_twitter`, `url_instagram`, `url_linkedin`, `date_of_birth`, `address`, `bio`, `avatar`, `user_metadata`, `last_ip`, `login_count`, `last_login`, `email_verified_at`, `status`, `nik`, `nisn`, `nim_asal`, `pt_asal`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Super Admin', '100001', 'super@admin.com', '+12483171988', 'Female', NULL, NULL, NULL, NULL, NULL, '2017-03-26', NULL, NULL, 'img/default-avatar.jpg', NULL, '127.0.0.1', 16, '2023-01-29 03:43:03', NULL, 1, NULL, NULL, NULL, '', NULL, 1, NULL, '2023-01-24 08:54:07', '2023-01-29 03:43:03', NULL),
+(2, 2, 'Admin Istrator', '100002', 'admin@admin.com', '(210) 875-9350', 'Other', NULL, NULL, NULL, NULL, NULL, '1985-04-21', NULL, NULL, 'img/default-avatar.jpg', NULL, '127.0.0.1', 1, '2023-02-12 03:24:50', NULL, 1, NULL, NULL, NULL, '', NULL, 2, NULL, '2023-01-24 08:54:08', '2023-02-12 03:24:50', NULL),
+(3, 3, 'Manager', '100003', 'manager@manager.com', '(206) 915-0555', 'Male', NULL, NULL, NULL, NULL, NULL, '1973-08-04', NULL, NULL, 'img/default-avatar.jpg', NULL, NULL, 0, NULL, NULL, 1, NULL, NULL, NULL, '', NULL, NULL, NULL, '2023-01-24 08:54:08', '2023-01-24 08:54:08', NULL),
+(4, 4, 'Executive User', '100004', 'executive@executive.com', '1-331-943-1285', 'Male', NULL, NULL, NULL, NULL, NULL, '2021-04-02', NULL, NULL, 'img/default-avatar.jpg', NULL, NULL, 0, NULL, NULL, 1, NULL, NULL, NULL, '', NULL, NULL, NULL, '2023-01-24 08:54:08', '2023-01-24 08:54:08', NULL),
+(5, 5, 'General User', '100005', 'user@user.com', '(304) 791-9341', 'Female', NULL, NULL, NULL, NULL, NULL, '1977-08-05', 'Bandung', NULL, 'http://localhost:8000/media/6/3kQUGGfFbN9JFLxzfGU0Eo8bEUs31DkQ4neTnere.jpg', NULL, '127.0.0.1', 21, '2023-02-13 02:53:12', NULL, 1, '1298192819829', '123456789', '2008433', 'Universitas Pendidikan Indonesia', NULL, 5, NULL, '2023-01-24 08:54:08', '2023-02-13 02:53:12', NULL);
 
 -- --------------------------------------------------------
 
@@ -594,12 +595,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `username`, `email`, `mobile`, `gender`, `date_of_birth`, `email_verified_at`, `password`, `avatar`, `status`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Super Admin', 'Super', 'Admin', '100001', 'super@admin.com', '+12483171988', 'Female', '2017-03-26', '2023-01-24 08:54:06', '$2y$10$0bNJL9omoxZeaNvUus5xkeA45iBlDgzZxV6JfZvg1u7jxEcsZzrCq', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
-(2, 'Admin Istrator', 'Admin', 'Istrator', '100002', 'admin@admin.com', '(210) 875-9350', 'Other', '1985-04-21', '2023-01-24 08:54:06', '$2y$10$.6gjsFU4qMNgR/wIU.zjCuK6boY7Sb7SvUsKMZ5ZFJ3VOEYgJENWC', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
-(3, 'Manager', 'Manager', 'User User', '100003', 'manager@manager.com', '(206) 915-0555', 'Male', '1973-08-04', '2023-01-24 08:54:06', '$2y$10$BOhNMKMcBlgOITHd7JdkNuNFjvBT.BojuU092KMGpmOUEtCSjWVd.', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
-(4, 'Executive User', 'Executive', 'User', '100004', 'executive@executive.com', '1-331-943-1285', 'Male', '2021-04-02', '2023-01-24 08:54:06', '$2y$10$.qwbQlxav/8d6c6TgmmoZuagZezyJt9sFcCEt.9twoCoxRZ04JdZ.', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
-(5, 'General User', 'General', 'User', '100005', 'user@user.com', '(304) 791-9341', 'Female', '1977-08-05', '2023-01-24 08:54:06', '$2y$10$UiMqm66JpgLklmw.YS2OLOPzHTXYL7ZzdYOp/mfV1mLX39yQT4UbW', 'http://localhost:8000/media/23/Eh71vPiA2T9mKhOQvhFdCbK96413g9DYSyPUV439.pdf', 1, NULL, '2023-01-24 08:54:06', '2023-02-12 06:39:11', NULL);
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `mobile`, `gender`, `date_of_birth`, `email_verified_at`, `password`, `avatar`, `status`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Super Admin', '100001', 'super@admin.com', '+12483171988', 'Female', '2017-03-26', '2023-01-24 08:54:06', '$2y$10$0bNJL9omoxZeaNvUus5xkeA45iBlDgzZxV6JfZvg1u7jxEcsZzrCq', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
+(2, 'Admin Istrator', '100002', 'admin@admin.com', '(210) 875-9350', 'Other', '1985-04-21', '2023-01-24 08:54:06', '$2y$10$.6gjsFU4qMNgR/wIU.zjCuK6boY7Sb7SvUsKMZ5ZFJ3VOEYgJENWC', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
+(3, 'Manager', '100003', 'manager@manager.com', '(206) 915-0555', 'Male', '1973-08-04', '2023-01-24 08:54:06', '$2y$10$BOhNMKMcBlgOITHd7JdkNuNFjvBT.BojuU092KMGpmOUEtCSjWVd.', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
+(4, 'Executive User', '100004', 'executive@executive.com', '1-331-943-1285', 'Male', '2021-04-02', '2023-01-24 08:54:06', '$2y$10$.qwbQlxav/8d6c6TgmmoZuagZezyJt9sFcCEt.9twoCoxRZ04JdZ.', 'img/default-avatar.jpg', 1, NULL, '2023-01-24 08:54:06', '2023-01-24 08:54:06', NULL),
+(5, 'General User', '100005', 'user@user.com', '(304) 791-9341', 'Female', '1977-08-05', '2023-01-24 08:54:06', '$2y$10$UiMqm66JpgLklmw.YS2OLOPzHTXYL7ZzdYOp/mfV1mLX39yQT4UbW', 'http://localhost:8000/media/23/Eh71vPiA2T9mKhOQvhFdCbK96413g9DYSyPUV439.pdf', 1, NULL, '2023-01-24 08:54:06', '2023-02-12 06:39:11', NULL);
 
 -- --------------------------------------------------------
 
