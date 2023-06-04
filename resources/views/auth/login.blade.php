@@ -11,6 +11,8 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        @include('flash::message')
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -46,26 +48,24 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" placeholder="Mauskan password anda disini"/>
             </div>
 
-            <!-- Remember Me -->
-            {{-- <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div> --}}
-
             <div class="flex items-center justify-center mt-5">
                 <x-button class="d-grid gap-2">
                     {{ __('Log in') }}
                 </x-button>
             </div>
 
-            @if (Route::has('password.request'))
             <p class="text-left text-gray-600 mt-4">
-                {{-- Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>. --}}
+                Belum punya akun? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Daftar</a>
             </p>
-            @endif
         </form>
 
     </x-auth-card>
 </x-auth-layout>
+
+<!-- If using flash()->important() or flash()->overlay(), you'll need to pull in the JS for Twitter Bootstrap. -->
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+    $('#flash-overlay-modal').modal();
+</script>

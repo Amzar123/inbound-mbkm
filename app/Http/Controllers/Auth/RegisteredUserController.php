@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Laracasts\Flash\Flash;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -60,8 +62,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
         event(new UserRegistered($user));
 
-        Auth::login($user);
+        Flash::success("<i class='fas fa-check'></i> Akun berhasil dibuat")->important();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect("/login");
     }
 }
