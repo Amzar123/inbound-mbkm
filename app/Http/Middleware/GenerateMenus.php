@@ -103,7 +103,7 @@ class GenerateMenus
             ->data([
                 'order'         => 103,
                 'activematches' => 'document*',
-                'permission'    => [],
+                'permission'    => ['view_peserta'],
             ])
             ->link->attr([
                 'class' => 'nav-link',
@@ -117,7 +117,7 @@ class GenerateMenus
             ->data([
                 'order'         => 103,
                 'activematches' => 'program*',
-                'permission'    => [],
+                'permission'    => ['view_program'],
             ])
             ->link->attr([
                 'class' => 'nav-link',
