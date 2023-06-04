@@ -117,7 +117,7 @@ class GenerateMenus
             ->data([
                 'order'         => 103,
                 'activematches' => 'program*',
-                'permission'    => ['view_program'],
+                'permission'    => ['edit_program', 'view_program'],
             ])
             ->link->attr([
                 'class' => 'nav-link',

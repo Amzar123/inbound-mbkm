@@ -23,36 +23,38 @@
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-        <h4>Tambahkan program</h4>
-        <form action="{{ route('program.store') }}" method="POST">
-            @csrf
-            <div class="row mb-2">
-                <div class="col">
-                    <label for="inputkodematakuliah" class="form-label">Kode program</label>
-                    <input type="text" class="form-control" name="kode_program" id="inputkodeprogram" placeholder="Masukan kode program" aria-label="Kode mata kuliah">
+        @if (auth()->user()->hasRole('prodi'))
+            <hr>
+            <h4>Tambahkan program</h4>
+            <form action="{{ route('program.store') }}" method="POST">
+                @csrf
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="inputkodematakuliah" class="form-label">Kode program</label>
+                        <input type="text" class="form-control" name="kode_program" id="inputkodeprogram" placeholder="Masukan kode program" aria-label="Kode mata kuliah">
+                    </div>
+                    <div class="col">
+                        <label for="namamatakuliah" class="form-label">Nama program</label>
+                        <input type="text" class="form-control" name="nama_program" id="namaprogram" placeholder="Masukan nama program" aria-label="Nama mata kuliah">
+                    </div>
                 </div>
-                <div class="col">
-                    <label for="namamatakuliah" class="form-label">Nama program</label>
-                    <input type="text" class="form-control" name="nama_program" id="namaprogram" placeholder="Masukan nama program" aria-label="Nama mata kuliah">
-                </div>
-            </div>
 
-            <div class="row mb-3">
-                <div class="col-8">
-                    <label for="inputdosenpengampu" class="form-label">Penyelenggara</label>
-                    <input type="text" class="form-control" name="penyelenggara" id="inputpenyelenggara" placeholder="Masukan nama penyelenggara" aria-label="Kode mata kuliah">
+                <div class="row mb-3">
+                    <div class="col-8">
+                        <label for="inputdosenpengampu" class="form-label">Penyelenggara</label>
+                        <input type="text" class="form-control" name="penyelenggara" id="inputpenyelenggara" placeholder="Masukan nama penyelenggara" aria-label="Kode mata kuliah">
+                    </div>
+                    <div class="col">
+                        <label for="inputbobotsks" class="form-label">Waktu Pelaksanaan</label>
+                        <input type="number" min="1" max="4" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                    </div>
                 </div>
-                <div class="col">
-                    <label for="inputbobotsks" class="form-label">Waktu Pelaksanaan</label>
-                    <input type="number" min="1" max="4" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
-                </div>
-            </div>
-            <x-button style="width: 80px"  type="submit">
-                {{ __('Tambah') }}
-            </x-button>
-        </form>
-
+                <x-button style="width: 80px"  type="submit">
+                    {{ __('Tambah') }}
+                </x-button>
+            </form>
+        @endif
+        
         <hr>
         <h4>Daftar program</h4>
         <div class="row mt-4">
@@ -72,9 +74,11 @@
                             <th>
                                 Penyelenggara
                             </th>
-                            <th class="text-center">
-                                Action
-                            </th>
+                            @if (auth()->user()->hasRole('prodi'))
+                                <th class="text-center">
+                                    Action
+                                </th>
+                            @endif
                         </tr>
                     </thead>
 
@@ -94,10 +98,12 @@
                             <td>
                                 {{ $item->institution }}
                             </td>
-                            <td>
-                                <center><a href="{{route('program.destroy', $item->kode)}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i> Delete</a>
-                                <a href="{{route('program.show', $item->kode)}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a></center>
-                            </td>
+                            @if (auth()->user()->hasRole('prodi'))
+                                <td>
+                                    <center><a href="{{route('program.destroy', $item->kode)}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    <a href="{{route('program.show', $item->kode)}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a></center>
+                                </td>
+                            @endif
                         </tr>
                         <?php $index++ ?>
                         @endforeach
