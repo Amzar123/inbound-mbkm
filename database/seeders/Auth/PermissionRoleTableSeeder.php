@@ -40,8 +40,6 @@ class PermissionRoleTableSeeder extends Seeder
             Permission::firstOrCreate(['name' => $perms]);
         }
 
-        echo "\n\n";
-
         // Assign Permissions to Roles
         $admin->givePermissionTo(Permission::all());
         $manager->givePermissionTo('view_backend');

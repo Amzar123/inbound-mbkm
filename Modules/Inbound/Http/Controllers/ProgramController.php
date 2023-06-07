@@ -171,4 +171,15 @@ class ProgramController extends Controller
                         ->orderColumns(['id'], '-:column $1')
                         ->make(true);
     }
+
+    /**
+     * Register to program.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function register(Request $request, $id)
+    {
+        
+    }
 }

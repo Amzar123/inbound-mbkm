@@ -79,6 +79,11 @@
                                     Action
                                 </th>
                             @endif
+                            @if (auth()->user()->hasRole('user'))
+                                <th class="text-center">
+                                    Action
+                                </th>
+                            @endif
                         </tr>
                     </thead>
 
@@ -104,6 +109,12 @@
                                     <a href="{{route('program.show', $item->kode)}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a></center>
                                 </td>
                             @endif
+                            @if (auth()->user()->hasRole('user'))
+                                <td>
+                                    <center><a href="{{route('program.destroy', $item->kode)}}" class="btn btn-danger mt-1" data-method="DAFTAR" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Daftar" data-confirm="Apakah anda yakin?"><i class="fas fa-trash-alt"></i> Daftar</a></center>
+                                </td>
+                            @endif
+
                         </tr>
                         <?php $index++ ?>
                         @endforeach

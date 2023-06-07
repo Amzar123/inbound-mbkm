@@ -28,8 +28,6 @@ class UserTableSeeder extends Seeder
         // Add the master administrator, user id of 1
         $users = [
             [
-                'first_name'        => 'Super',
-                'last_name'         => 'Admin',
                 'name'              => 'Super Admin',
                 'email'             => 'super@admin.com',
                 'password'          => Hash::make('secret'),
@@ -43,8 +41,6 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'first_name'        => 'Admin',
-                'last_name'         => 'Istrator',
                 'name'              => 'Admin Istrator',
                 'email'             => 'admin@admin.com',
                 'password'          => Hash::make('secret'),
@@ -58,8 +54,6 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'first_name'        => 'Manager',
-                'last_name'         => 'User User',
                 'name'              => 'Manager',
                 'email'             => 'manager@manager.com',
                 'password'          => Hash::make('secret'),
@@ -73,8 +67,6 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'first_name'        => 'Executive',
-                'last_name'         => 'User',
                 'name'              => 'Executive User',
                 'email'             => 'executive@executive.com',
                 'password'          => Hash::make('secret'),
@@ -88,8 +80,6 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'first_name'        => 'General',
-                'last_name'         => 'User',
                 'name'              => 'General User',
                 'email'             => 'user@user.com',
                 'password'          => Hash::make('secret'),

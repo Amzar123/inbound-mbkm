@@ -27,6 +27,7 @@ Route::prefix('inbound')->group(function() {
     Route::post("program", ['as' => "program.store", 'uses' => "ProgramController@store"]);
     Route::delete("program/{id}", ['as' => "program.destroy", 'uses' => "ProgramController@destroy"]);
     Route::get("program/{id}", ['as' => "program.show", 'uses' => "ProgramController@show"]);
+    Route::post("program/{id}", ['as' => "program.register", 'uses' => "ProgramController@register"]);
 
     $controller_name = "UserController";
     $module_name = "users";
