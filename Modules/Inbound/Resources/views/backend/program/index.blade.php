@@ -111,7 +111,7 @@
                             @endif
                             @if (auth()->user()->hasRole('user'))
                                 <td>
-                                    <center><a href="{{route('program.destroy', $item->kode)}}" class="btn btn-danger mt-1" data-method="DAFTAR" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Daftar" data-confirm="Apakah anda yakin?"><i class="fas fa-trash-alt"></i> Daftar</a></center>
+                                    <center><a href="{{route('program.register', $item->kode)}}" class="btn btn-danger mt-1" data-method="DAFTAR" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Daftar" data-confirm="Apakah anda yakin?"><i class="fas fa-trash-alt"></i> Daftar</a></center>
                                 </td>
                             @endif
 

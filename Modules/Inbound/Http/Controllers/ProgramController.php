@@ -6,8 +6,10 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
+use Laracasts\Flash\Flash;
 
 use Modules\Inbound\Entities\Program;
+use Modules\Inbound\Entities\UsersPrograms;
 
 use Ramsey\Uuid\Uuid;
 
@@ -135,7 +137,7 @@ class ProgramController extends Controller
 
         $$module_name_singular = $module_model::where('kode', $kode)->delete();
 
-        // Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
 
         // Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
@@ -180,6 +182,27 @@ class ProgramController extends Controller
      */
     public function register(Request $request, $id)
     {
-        
+        $userId = auth()->user()->id;
+
+        // is program exist
+        $program = Program::where('kode', $id)->get();
+        if (!$program) {
+            Flash::failed('<i class="fas fa-cross"></i> Program tidak ditemukan!')->important();
+            return redirect("inbound/program");
+        }
+
+        $data = [
+            "program_id" => $id,
+            "user_id" => $userId
+        ];
+        $success = UsersPrograms::create($data);
+
+        if (!$success) {
+            Flash::failed('<i class="fas fa-cross"></i> Gagal mendaftar!')->important();
+        } else {
+            Flash::success('<i class="fas fa-check"></i> Berhasil mendaftar!')->important();
+        }
+
+        return redirect("inbound/program");
     }
 }
