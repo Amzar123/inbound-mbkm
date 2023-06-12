@@ -1,3 +1,5 @@
+@include('flash::message')
+
 <x-auth-layout>
     <x-slot name="title">
         @lang('Login')

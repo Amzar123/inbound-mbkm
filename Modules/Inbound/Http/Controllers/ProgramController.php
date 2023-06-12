@@ -10,6 +10,7 @@ use Laracasts\Flash\Flash;
 
 use Modules\Inbound\Entities\Program;
 use Modules\Inbound\Entities\UsersPrograms;
+use App\Models\User;
 
 use Ramsey\Uuid\Uuid;
 
@@ -96,7 +97,9 @@ class ProgramController extends Controller
     public function show($kode)
     {
         $program = Program::where('kode', $kode)->get();
-        return view('inbound::backend.program.detail', compact('program'));
+        $users = User::join("users_programs", "users.id", '=', 'users_programs.user_id')->get();
+
+        return view('inbound::backend.program.detail', compact('program', 'users'));
     }
 
     /**
@@ -181,6 +184,38 @@ class ProgramController extends Controller
      * @return Renderable
      */
     public function register(Request $request, $id)
+    {
+        $userId = auth()->user()->id;
+
+        // is program exist
+        $program = Program::where('kode', $id)->get();
+        if (!$program) {
+            Flash::failed('<i class="fas fa-cross"></i> Program tidak ditemukan!')->important();
+            return redirect("inbound/program");
+        }
+
+        $data = [
+            "program_id" => $id,
+            "user_id" => $userId
+        ];
+        $success = UsersPrograms::create($data);
+
+        if (!$success) {
+            Flash::failed('<i class="fas fa-cross"></i> Gagal mendaftar!')->important();
+        } else {
+            Flash::success('<i class="fas fa-check"></i> Berhasil mendaftar!')->important();
+        }
+
+        return redirect("inbound/program");
+    }
+
+    /**
+     * Menampilkan pendaftar.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function show_applicant(Request $request)
     {
         $userId = auth()->user()->id;
 

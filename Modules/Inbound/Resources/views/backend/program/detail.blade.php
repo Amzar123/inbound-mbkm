@@ -59,13 +59,13 @@
                                                     No
                                                 </th>
                                                 <th>
-                                                    Kode Program
+                                                    NIM
                                                 </th>
                                                 <th>
-                                                    Nama Program
+                                                    Nama
                                                 </th>
                                                 <th>
-                                                    Penyelenggara
+                                                    Email
                                                 </th>
                                                 <th class="text-center">
                                                     Action
@@ -73,30 +73,29 @@
                                             </tr>
                                         </thead>
                     
-                                        {{-- <tbody>
+                                        <tbody>
                                             <?php $index = 1 ?>
-                                            @foreach($programs as $item )
+                                            @foreach($users as $user )
                                             <tr>
                                                 <td>
                                                     {{ $index}}
                                                 </td>
                                                 <td>
-                                                    {{ $item->kode }}
+                                                    {{ $user->username }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->name }}
+                                                    {{ $user->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->institution }}
+                                                    test
                                                 </td>
                                                 <td>
-                                                    <center><a href="{{route('program.destroy', $item->kode)}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i> Delete</a>
-                                                    <a href="{{route('program.show', $item->kode)}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a></center>
+                                                    <center><a href="{{route('inbound.peserta.show', $user->id)}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a></center>
                                                 </td>
                                             </tr>
                                             <?php $index++ ?>
                                             @endforeach
-                                        </tbody> --}}
+                                        </tbody> 
                                     </table>
                                 </div>
                             </div>

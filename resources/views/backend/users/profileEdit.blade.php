@@ -88,7 +88,7 @@ justify-content: center;
 
                     <div class="col-md-10 mt-4" >
                         <h3 style="color:#B8B8B8">Foto Anda</h3>
-                        <p style="color:#B8B8B8"><i>Foto anda akan ditampilkan pada bagian profile</i></p>
+                        <p style="color:#B8B8B8"><i>Tets</i></p>
                     </div>
                     
                 </div>

@@ -18,9 +18,6 @@
             <x-slot name="subtitle">
                 @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
-            <x-slot name="toolbar">
-                <x-backend.buttons.return-back />
-            </x-slot>
         </x-backend.section-header>
 
         @if (auth()->user()->hasRole('prodi'))
@@ -30,23 +27,23 @@
                 @csrf
                 <div class="row mb-2">
                     <div class="col">
-                        <label for="inputkodematakuliah" class="form-label">Kode program</label>
+                        <label for="inputkodeprogram" class="form-label">Kode program</label>
                         <input type="text" class="form-control" name="kode_program" id="inputkodeprogram" placeholder="Masukan kode program" aria-label="Kode mata kuliah">
                     </div>
                     <div class="col">
-                        <label for="namamatakuliah" class="form-label">Nama program</label>
+                        <label for="namaprogram" class="form-label">Nama program</label>
                         <input type="text" class="form-control" name="nama_program" id="namaprogram" placeholder="Masukan nama program" aria-label="Nama mata kuliah">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-8">
-                        <label for="inputdosenpengampu" class="form-label">Penyelenggara</label>
+                        <label for="inputpenyelenggara" class="form-label">Penyelenggara</label>
                         <input type="text" class="form-control" name="penyelenggara" id="inputpenyelenggara" placeholder="Masukan nama penyelenggara" aria-label="Kode mata kuliah">
                     </div>
                     <div class="col">
-                        <label for="inputbobotsks" class="form-label">Waktu Pelaksanaan</label>
-                        <input type="number" min="1" max="4" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                        <label for="inputwaktu" class="form-label">Waktu Pelaksanaan</label>
+                        <input type="text" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
                     </div>
                 </div>
                 <x-button style="width: 80px"  type="submit">

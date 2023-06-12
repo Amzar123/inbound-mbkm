@@ -230,13 +230,16 @@ class UserController extends Controller
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
 
-        $$module_name = $module_model::paginate();
+        $data = User::join("users_programs", "users.id", '=', 'users_programs.user_id')->get();
+        
+
+        // dd($$module_name);
 
         Log::info("'$title' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             "inbound::backend.peserta.index",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
+            compact('module_title', 'module_name','data', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
         );
     }
 
@@ -251,7 +254,9 @@ class UserController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'username', 'email', 'email_verified_at', 'updated_at', 'status');
+        // $$module_name = $module_model::select('id', 'name', 'username', 'email', 'email_verified_at', 'updated_at', 'status');
+
+        $$module_name = User::rigthJoin("users_programs", "users.id", '=', 'users_programs.user_id')->get();
 
         $data = $$module_name;
 
