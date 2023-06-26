@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_programs', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger("user_id");
-            $table->string("program_id");
-            $table->timestamps();
-        });
+        // Schema::create('users_programs', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->bigInteger("user_id");
+        //     $table->string("program_id");
+        //     $table->timestamps();
+        // });
     }
 
     /**

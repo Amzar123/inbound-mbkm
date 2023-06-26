@@ -27,10 +27,6 @@
                 @csrf
                 <div class="row mb-2">
                     <div class="col">
-                        <label for="inputkodeprogram" class="form-label">Kode program</label>
-                        <input type="text" class="form-control" name="kode_program" id="inputkodeprogram" placeholder="Masukan kode program" aria-label="Kode mata kuliah">
-                    </div>
-                    <div class="col">
                         <label for="namaprogram" class="form-label">Nama program</label>
                         <input type="text" class="form-control" name="nama_program" id="namaprogram" placeholder="Masukan nama program" aria-label="Nama mata kuliah">
                     </div>
@@ -42,8 +38,12 @@
                         <input type="text" class="form-control" name="penyelenggara" id="inputpenyelenggara" placeholder="Masukan nama penyelenggara" aria-label="Kode mata kuliah">
                     </div>
                     <div class="col">
-                        <label for="inputwaktu" class="form-label">Waktu Pelaksanaan</label>
-                        <input type="text" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                        <label for="inputwaktu" class="form-label">Mulai Program</label>
+                        <input type="date" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                    </div>
+                    <div class="col">
+                        <label for="inputwaktu" class="form-label">Selesai Program</label>
+                        <input type="date" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
                     </div>
                 </div>
                 <x-button style="width: 80px"  type="submit">
@@ -61,9 +61,6 @@
                         <tr>
                             <th>
                                 No
-                            </th>
-                            <th>
-                                Kode Program
                             </th>
                             <th>
                                 Nama Program
