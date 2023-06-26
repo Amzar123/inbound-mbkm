@@ -82,7 +82,8 @@ class ProgramController extends Controller
             "id" => $uuidString,
             "name" => $request->nama_program,
             "institution" => $request->penyelenggara,
-            "kode" => $request->kode_program 
+            "start" => $request->program_start,
+            "end" => $request->program_end
         ];
         $module_name_singular = Program::create($data);
 
@@ -128,7 +129,7 @@ class ProgramController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($kode)
+    public function destroy($id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -138,7 +139,7 @@ class ProgramController extends Controller
 
         $module_action = 'destroy';
 
-        $$module_name_singular = $module_model::where('kode', $kode)->delete();
+        $$module_name_singular = $module_model::where('id', $id)->delete();
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
 

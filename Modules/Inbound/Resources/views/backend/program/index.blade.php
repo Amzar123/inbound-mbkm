@@ -39,11 +39,13 @@
                     </div>
                     <div class="col">
                         <label for="inputwaktu" class="form-label">Mulai Program</label>
-                        <input type="date" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                        <input type="date" class="form-control" name="program_start" id="inputwaktumulaipelaksanaan" aria-label="Nama mata kuliah">
                     </div>
                     <div class="col">
-                        <label for="inputwaktu" class="form-label">Selesai Program</label>
-                        <input type="date" class="form-control" name="waktu_pelaksanaan" id="inputwaktupelaksanaan" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                        <label for="inputwaktu" class="form-label">Selesai Program
+
+                        </label>
+                        <input type="date" class="form-control" name="program_end" id="inputwaktuakhirpelaksanaan" aria-label="Nama mata kuliah">
                     </div>
                 </div>
                 <x-button style="width: 80px"  type="submit">
@@ -68,6 +70,9 @@
                             <th>
                                 Penyelenggara
                             </th>
+                            <th>
+                                Waktu Pelaksanaan
+                            </th>
                             @if (auth()->user()->hasRole('prodi'))
                                 <th class="text-center">
                                     Action
@@ -89,18 +94,18 @@
                                 {{ $index}}
                             </td>
                             <td>
-                                {{ $item->kode }}
-                            </td>
-                            <td>
                                 {{ $item->name }}
                             </td>
                             <td>
                                 {{ $item->institution }}
                             </td>
+                            <td>
+                                {{ $item->start }} s.d. {{ $item->end }}
+                            </td>
                             @if (auth()->user()->hasRole('prodi'))
                                 <td>
-                                    <center><a href="{{route('program.destroy', $item->kode)}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i> Delete</a>
-                                    <a href="{{route('program.show', $item->kode)}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a></center>
+                                    <center><a href="{{route('program.destroy', $item->id)}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    <a href="{{route('program.show', $item->id)}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a></center>
                                 </td>
                             @endif
                             @if (auth()->user()->hasRole('user'))
