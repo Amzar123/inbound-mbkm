@@ -51,6 +51,8 @@ class ProgramController extends Controller
 
         $programs = $module_model::paginate();
 
+        dd($programs);
+
         return view(
             'inbound::backend.program.index', 
             compact('programs','module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action'));
@@ -73,13 +75,11 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         // Generate a version 4 (random) UUID
-        $uuid = Uuid::uuid4();
+        $uuid = (string) Uuid::uuid4();
 
-        // Convert UUID to string
-        $uuidString = $uuid->toString();
-        //
+        // Create data
         $data = [
-            "id" => $uuidString,
+            "id" => $uuid,
             "name" => $request->nama_program,
             "institution" => $request->penyelenggara,
             "start" => $request->program_start,
@@ -95,9 +95,10 @@ class ProgramController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($kode)
+    public function show($uuid)
     {
-        $program = Program::where('kode', $kode)->get();
+        dd($uuid);
+        $program = Program::where('id', $id)->get();
         $users = User::join("users_programs", "users.id", '=', 'users_programs.user_id')->get();
 
         return view('inbound::backend.program.detail', compact('program', 'users'));

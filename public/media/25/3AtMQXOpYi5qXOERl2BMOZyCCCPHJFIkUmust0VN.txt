@@ -1,7 +1,0 @@
-Token github
-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
-
-
-Cara jalanin migration golang
-./migrate -source file:///home/aji/Work/ms-employer/database/postgresql/migrations  -database postgres://postgres:password@localhost:5432/employer?sslmode=disable up
-

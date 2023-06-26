@@ -88,10 +88,10 @@
 
                     <tbody>
                         <?php $index = 1 ?>
-                        @foreach($programs as $item )
+                        @foreach($programs->items() as $item )
                         <tr>
                             <td>
-                                {{ $index}}
+                                {{ $item->id }}
                             </td>
                             <td>
                                 {{ $item->name }}
@@ -110,10 +110,12 @@
                             @endif
                             @if (auth()->user()->hasRole('user'))
                                 <td>
-                                    <center><a href="{{route('program.register', $item->kode)}}" class="btn btn-info mt-1" data-method="POST" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Daftar" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-paper-plane"></i> Daftar</a></center>
+                                    <center>
+                                        <a href="{{route('program.register', ['uuid' => $item->id])}}" class="btn btn-info mt-1" data-method="POST" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Daftar" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-paper-plane"></i> Daftar</a>
+                                        <a href="{{route('program.show', ['uuid' => $item->id])}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a>
+                                    </center>
                                 </td>
                             @endif
-
                         </tr>
                         <?php $index++ ?>
                         @endforeach
