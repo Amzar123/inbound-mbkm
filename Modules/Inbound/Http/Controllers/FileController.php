@@ -72,6 +72,7 @@ class FileController extends Controller
 
          $fileNames = [];
          $fileTypes = [];
+         $fileUrl = [];
         
         // handle loa file upload
         if ($request->hasFile('loa_file')) {
@@ -87,9 +88,11 @@ class FileController extends Controller
 
             $file = $request->file('loa_file');
             $path = $file->store('uploads', 'public');
+            $url = Storage::url($path);
 
             $fileNames[count($fileNames)] = $request->file('loa_file')->getClientOriginalName();
             $fileTypes[count($fileTypes)] = "Letter Of Acceptance";
+            $fileUrl[count($fileUrl)] = $url;
         }
 
         // handle surat persetujuan file upload
@@ -108,11 +111,13 @@ class FileController extends Controller
 
             $file = $request->file('persetujuan_pt_file');
             $path = $file->store('uploads', 'public');
+            $url = Storage::url($path);
 
             // dd(count($fileNames));
 
             $fileNames[count($fileNames)] = $request->file('persetujuan_pt_file')->getClientOriginalName();
             $fileTypes[count($fileTypes)] = "Surat Persetujuan PT Asal";
+            $fileUrl[count($fileUrl)] = $url;
         }
 
         for ($i=0; $i < count($fileTypes); $i++) { 
@@ -120,7 +125,8 @@ class FileController extends Controller
                 'file_id' => Uuid::uuid4()->toString(),
                 'user_id' => auth()->user()->id,
                 'file_name' => $fileNames[$i],
-                'type' => $fileTypes[$i]
+                'type' => $fileTypes[$i],
+                'url' => $fileUrl[$i]
             ];
     
             $isUploadSuccess = File::create($file_data);
@@ -182,11 +188,11 @@ class FileController extends Controller
         $isSuccess = $module_model::where('file_id', $request->file_id)->delete();
 
         if (!$isSuccess) {
-            Flash::warning('<i class="fas fa-cross"></i> '.label_case($isSuccess).' Deleted failed!')->important();
+            Flash::warning('<i class="fas fa-cross"></i> '.label_case($request->file_id).' Deleted failed!')->important();
             return redirect("inbound/document");
         }
         // Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
-        Flash::success('<i class="fas fa-check"></i> '.label_case($isSuccess).' Deleted Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.label_case($request->file_id).' Deleted Successfully!')->important();
         return redirect("inbound/document");
     }
 }

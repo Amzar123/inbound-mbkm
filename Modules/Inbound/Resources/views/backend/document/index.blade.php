@@ -169,20 +169,24 @@
                                 {{ $file->created_at }}
                             </td>
                             <td>
-                            <center>
-                                    <div class="">
-                                        <a href="{{ route('inbound.subject.delete', $item->subject_id) }}" class="btn btn-danger mt-1 mr-1" data-method="DELETE" data-token="{{ csrf_token() }}" data-toggle="tooltip" title="{{ __('labels.backend.delete') }}" data-confirm="Are you sure?">
-                                            <i class="fas fa-eye"></i> View
-                                        </a>
-                                        <form action="{{ route('document.destroy') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="file_id" value="{{ $file->file_id }}">
-                                            <button type="submit" data-toggle="tooltip" title="{{ __('labels.backend.delete') }}" onclick="return confirm('Are you sure?')" class="btn btn-danger mt-1">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                            </center>
+                                <center>
+                                        <div class="d-flex justify-content-center flex-row bd-highlight mb-3">
+                                            <div class="p-2 bd-highlight">
+                                                <a href="{{ $file->url }}" target="_blank" class="btn btn-info mt-1 mr-1" data-toggle="tooltip" title="Detail">
+                                                    <i class="fas fa-eye"></i> View
+                                                </a>
+                                            </div>
+                                            <div class="p-2 bd-highlight">
+                                                <form action="{{ route('document.destroy') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="file_id" value="{{ $file->file_id }}">
+                                                    <button type="submit" data-toggle="tooltip" title="{{ __('labels.backend.delete') }}" onclick="return confirm('Are you sure?')" class="btn btn-danger mt-1">
+                                                        <i class="fas fa-trash-alt"></i> Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                </center>
                             </td>
                         </tr>
                         <?php $index++ ?>

@@ -14,6 +14,7 @@ class File extends Model
         'file_name',
         'user_id',
         'type',
+        'url',
         'updated_at',
         'created_at' 	
     ];

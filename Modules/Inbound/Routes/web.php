@@ -27,7 +27,7 @@ Route::prefix('inbound')->group(function() {
     Route::get("program", ['as' => "program.index", 'uses' => "ProgramController@index"]);
     Route::post("program", ['as' => "program.store", 'uses' => "ProgramController@store"]);
     Route::delete("program/{id}", ['as' => "program.destroy", 'uses' => "ProgramController@destroy"]);
-    Route::get("program/{uuid}", ['as' => "program.show", 'uses' => "ProgramController@show"]);
+    Route::post("program/show", ['as' => "program.show", 'uses' => "ProgramController@show"]);
     Route::get("program/register/{uuid}", ['as' => "program.register", 'uses' => "ProgramController@register"]);
 
     $controller_name = "UserController";

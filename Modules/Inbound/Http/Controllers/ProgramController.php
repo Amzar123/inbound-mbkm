@@ -51,7 +51,7 @@ class ProgramController extends Controller
 
         $programs = $module_model::paginate();
 
-        dd($programs);
+        // dd($programs);
 
         return view(
             'inbound::backend.program.index', 
@@ -95,9 +95,9 @@ class ProgramController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($uuid)
+    public function show(Request $request)
     {
-        dd($uuid);
+        dd($request->program_id);
         $program = Program::where('id', $id)->get();
         $users = User::join("users_programs", "users.id", '=', 'users_programs.user_id')->get();
 

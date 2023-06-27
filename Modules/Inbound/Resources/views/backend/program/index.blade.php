@@ -19,40 +19,6 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
         </x-backend.section-header>
-
-        @if (auth()->user()->hasRole('prodi'))
-            <hr>
-            <h4>Tambahkan program</h4>
-            <form action="{{ route('program.store') }}" method="POST">
-                @csrf
-                <div class="row mb-2">
-                    <div class="col">
-                        <label for="namaprogram" class="form-label">Nama program</label>
-                        <input type="text" class="form-control" name="nama_program" id="namaprogram" placeholder="Masukan nama program" aria-label="Nama mata kuliah">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-8">
-                        <label for="inputpenyelenggara" class="form-label">Penyelenggara</label>
-                        <input type="text" class="form-control" name="penyelenggara" id="inputpenyelenggara" placeholder="Masukan nama penyelenggara" aria-label="Kode mata kuliah">
-                    </div>
-                    <div class="col">
-                        <label for="inputwaktu" class="form-label">Mulai Program</label>
-                        <input type="date" class="form-control" name="program_start" id="inputwaktumulaipelaksanaan" aria-label="Nama mata kuliah">
-                    </div>
-                    <div class="col">
-                        <label for="inputwaktu" class="form-label">Selesai Program
-
-                        </label>
-                        <input type="date" class="form-control" name="program_end" id="inputwaktuakhirpelaksanaan" aria-label="Nama mata kuliah">
-                    </div>
-                </div>
-                <x-button style="width: 80px"  type="submit">
-                    {{ __('Tambah') }}
-                </x-button>
-            </form>
-        @endif
         
         <hr>
         <h4>Daftar program</h4>
@@ -88,10 +54,10 @@
 
                     <tbody>
                         <?php $index = 1 ?>
-                        @foreach($programs->items() as $item )
+                        @foreach($programs as $item )
                         <tr>
                             <td>
-                                {{ $item->id }}
+                                {{ $index }}
                             </td>
                             <td>
                                 {{ $item->name }}
@@ -111,7 +77,7 @@
                             @if (auth()->user()->hasRole('user'))
                                 <td>
                                     <center>
-                                        <a href="{{route('program.register', ['uuid' => $item->id])}}" class="btn btn-info mt-1" data-method="POST" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Daftar" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-paper-plane"></i> Daftar</a>
+                                        <a href="{{route('program.register', ['uuid' => $item->id])}}" class="btn btn-primary mt-1" data-method="POST" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Daftar" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-paper-plane"></i> Daftar</a>
                                         <a href="{{route('program.show', ['uuid' => $item->id])}}" class="btn btn-info mt-1" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Detail')}}"><i class="fas fa-info-circle"></i> Detail</a>
                                     </center>
                                 </td>
@@ -123,6 +89,38 @@
                 </table>
             </div>
         </div>
+
+        @if (auth()->user()->hasRole('prodi'))
+            <hr>
+            <h4>Tambahkan program</h4>
+            <form action="{{ route('program.store') }}" method="POST">
+                @csrf
+                <div class="row mb-2">
+                    <div class="col">
+                        <label for="namaprogram" class="form-label">Nama program</label>
+                        <input type="text" class="form-control" name="nama_program" id="namaprogram" placeholder="Masukan nama program" aria-label="Nama mata kuliah">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-8">
+                        <label for="inputpenyelenggara" class="form-label">Penyelenggara</label>
+                        <input type="text" class="form-control" name="penyelenggara" id="inputpenyelenggara" placeholder="Masukan nama penyelenggara" aria-label="Kode mata kuliah">
+                    </div>
+                    <div class="col">
+                        <label for="inputwaktu" class="form-label">Mulai Program</label>
+                        <input type="date" class="form-control" name="program_start" id="inputwaktumulaipelaksanaan" aria-label="Nama mata kuliah">
+                    </div>
+                    <div class="col">
+                        <label for="inputwaktu" class="form-label">Selesai Program
+
+                        </label>
+                        <input type="date" class="form-control" name="program_end" id="inputwaktuakhirpelaksanaan" aria-label="Nama mata kuliah">
+                    </div>
+                </div>
+                <button class="btn btn-primary mt-1 mb-3" type="submit"> <i class="fa fa-plus"></i> {{ __('Tambah') }}</button>
+            </form>
+        @endif
     </div>
     <div class="card-footer">
         <div class="row">

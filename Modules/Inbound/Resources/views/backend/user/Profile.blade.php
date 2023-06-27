@@ -1,17 +1,17 @@
 @extends('backend.layouts.app')
 
-{{-- @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection --}}
+@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    {{-- <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
         {{ __($module_title) }}
-    </x-backend-breadcrumb-item> --}}
-    {{-- <x-backend-breadcrumb-item route='{{route("backend.$module_name.show", $user->id)}}' icon='{{ $module_icon }}'>
+    </x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.show", $user->id)}}' icon='{{ $module_icon }}'>
         {{ $user->name }}
-    </x-backend-breadcrumb-item> --}}
+    </x-backend-breadcrumb-item>
 
-    {{-- <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item> --}}
+    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -234,6 +234,24 @@
                             {{ html()->text($field_name)->value($userprofile->pt_asal)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-2">
+                            <?php
+                            $field_name = 'pt_asal';
+                            $field_lable = '<b>PT Asal</b>';
+                            $field_placeholder = $field_lable;
+                            $required = "required";
+                            ?>
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        </div>
+
+                        <div class="col-md-10"> 
+                            <select class="form-select col-md-10" name="" id="">
+                                aji
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -327,5 +345,20 @@
             }
         });
     });
+
+
+
+$(document).ready(function() {
+    $('.select2').select2({
+        width: '100%',
+        placeholder: 'Search...',
+        allowClear: true,
+    });
+});
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </script>
 @endpush
