@@ -47,9 +47,12 @@
                     <table class="table table-hover table-responsive-sm">
                         <thead>
                             <tr>
-                                <th>{{ __('labels.backend.users.fields.name') }}</th>
+                                <th>No</th>
                                 <th>{{ __('labels.backend.users.fields.name') }}</th>
                                 <th>{{ __('labels.backend.users.fields.email') }}</th>
+                                <th>Program</th>
+                                <th>Waktu Pelaksanaan</th>
+                                <th>Status</th>
                                 <th class="text-end">{{ __('labels.backend.action') }}</th>
                             </tr>
                         </thead>
@@ -65,6 +68,12 @@
                                     {{-- </a> --}}
                                 </td>
                                 <td>{{ $user->email }}</td>
+
+                                <td>Program</td>
+
+                                <td>Ini waktunya</td>
+
+                                <td><p style="color:green">Aktif</p></td>
 
                                 <td class="text-end">
                                     <a href="{{route('inbound.peserta.show', $user->id)}}" class="btn btn-success btn-sm mt-1" data-toggle="tooltip" title="Detail"><i class="fas fa-info-circle"></i> Detail</a>

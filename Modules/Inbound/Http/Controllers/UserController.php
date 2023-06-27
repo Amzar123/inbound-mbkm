@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Models\Userprofile;
 use App\Models\User;
+use Modules\Inbound\Entities\Program;
 use App\Events\Backend\UserProfileUpdated;
 use Laracasts\Flash\Flash;
 use Yajra\DataTables\DataTables;
@@ -231,15 +232,15 @@ class UserController extends Controller
         $title = $page_heading.' '.ucfirst($module_action);
 
         $data = User::join("users_programs", "users.id", '=', 'users_programs.user_id')->get();
-        
+        $programs = Program::join("users_programs", "programs.id", "=", "users_programs.program_id")->get();
 
-        // dd($$module_name);
-
+        dd($programs);
+    
         Log::info("'$title' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             "inbound::backend.peserta.index",
-            compact('module_title', 'module_name','data', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
+            compact('module_title', 'module_name','data', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title', 'programs')
         );
     }
 

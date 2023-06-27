@@ -100,6 +100,10 @@
         <hr>
 
         <h4>Pratinjau dokumen</h4>
+
+        <form action="" method="post">
+            <button class="btn btn-success mt-1" type="submit"><i class="fas fa-check"></i> Approve</button>
+        </form>
     </div>
 
     <div class="card-footer">

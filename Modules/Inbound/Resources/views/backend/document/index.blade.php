@@ -23,33 +23,6 @@
         </x-backend.section-header>
 
         <hr>
-        <form action="{{ route('inbound.subject') }}" method="POST">
-            @csrf
-            <div class="row mb-2">
-                <div class="col">
-                    <label for="inputkodematakuliah" class="form-label">Kode mata kuliah</label>
-                    <input type="text" class="form-control" name="kode_mata_kuliah" id="inputkodematakuliah" placeholder="Masukan kode mata kuliah" aria-label="Kode mata kuliah">
-                </div>
-                <div class="col">
-                    <label for="namamatakuliah" class="form-label">Nama mata kuliah</label>
-                    <input type="text" class="form-control" name="nama_mata_kuliah" id="namamatakuliah" placeholder="Masukan nama mata kuliah disini" aria-label="Nama mata kuliah">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-8">
-                    <label for="inputdosenpengampu" class="form-label">Dosen pengampu</label>
-                    <input type="text" class="form-control" name="dosen_pengampu" id="inputdosenpengampu" placeholder="Masukan dosen pengampu disini" aria-label="Kode mata kuliah">
-                </div>
-                <div class="col">
-                    <label for="inputbobotsks" class="form-label">Bobot SKS</label>
-                    <input type="number" min="1" max="4" class="form-control" name="sks_mata_kuliah" id="inputbobotsks" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
-                </div>
-            </div>
-            <x-button style="width: 80px"  type="submit">
-                {{ __('Tambah') }}
-            </x-button>
-        </form>
 
         <div class="row mt-4">
             <div class="col">
@@ -106,6 +79,34 @@
                 </table>
             </div>
         </div>
+
+        <hr>
+
+        <form action="{{ route('inbound.subject') }}" method="POST">
+            @csrf
+            <div class="row mb-2 mt-3">
+                <div class="col">
+                    <label for="inputkodematakuliah" class="form-label">Kode mata kuliah</label>
+                    <input type="text" class="form-control" name="kode_mata_kuliah" id="inputkodematakuliah" placeholder="Masukan kode mata kuliah" aria-label="Kode mata kuliah">
+                </div>
+                <div class="col">
+                    <label for="namamatakuliah" class="form-label">Nama mata kuliah</label>
+                    <input type="text" class="form-control" name="nama_mata_kuliah" id="namamatakuliah" placeholder="Masukan nama mata kuliah disini" aria-label="Nama mata kuliah">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-8">
+                    <label for="inputdosenpengampu" class="form-label">Dosen pengampu</label>
+                    <input type="text" class="form-control" name="dosen_pengampu" id="inputdosenpengampu" placeholder="Masukan dosen pengampu disini" aria-label="Kode mata kuliah">
+                </div>
+                <div class="col">
+                    <label for="inputbobotsks" class="form-label">Bobot SKS</label>
+                    <input type="number" min="1" max="4" class="form-control" name="sks_mata_kuliah" id="inputbobotsks" placeholder="Masukan bobot sks disini" aria-label="Nama mata kuliah">
+                </div>
+            </div>
+            <button class="btn btn-primary mt-1 mb-3" type="submit"> <i class="fa fa-plus"></i> {{ __('Tambah') }}</button>
+        </form>
     </div>
     <div class="card-footer">
         <div class="row">
@@ -202,7 +203,7 @@
                     <label for="formFile" class="form-label">Surat persetujuan perguruan tinggi asal</label>
                     <input class="form-control" name="persetujuan_pt_file" type="file" id="formFile">
                 </div>
-                <button class="btn btn-primary mt-1 mb-3" type="submit">Kirim</button>
+                <button class="btn btn-primary mt-1 mb-3" type="submit"><i class="fas fa-paper-plane"></i> Kirim</button>
             </form> 
         </div>
     </div>
